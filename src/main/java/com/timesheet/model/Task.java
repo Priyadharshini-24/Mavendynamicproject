@@ -1,11 +1,11 @@
 package com.timesheet.model;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 public class Task {
 	private int userid;
 	private String task;
-	private Date dateassigned;
-	private Date enddate;
+	private LocalDate dateassigned;
+	private LocalDate enddate;
 	private String taskpriority;
 	private String assignedto;
 	
@@ -26,18 +26,18 @@ public class Task {
 		this.task = task;
 	}
 
-	public Date getDateassigned() {
+	public LocalDate getDateassigned() {
 		return dateassigned;
 	}
 
-	public void setDateassigned(Date dateassigned) {
+	public void setDateassigned(LocalDate dateassigned) {
 		this.dateassigned = dateassigned;
 	}
-	public Date getEnddate() {
+	public LocalDate getEnddate() {
 		return enddate;
 	}
 
-	public void setEnddate(Date enddate) {
+	public void setEnddate(LocalDate enddate) {
 		this.enddate = enddate;
 	}
 
@@ -60,7 +60,7 @@ public class Task {
 		super();
 	}
 	
-	public Task(int userid, String task, Date dateassigned, Date enddate, String taskpriority, String assignedto) {
+	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority, String assignedto) {
 		super();
 		this.userid = userid;
 		this.task = task;

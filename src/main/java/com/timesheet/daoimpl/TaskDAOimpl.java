@@ -23,8 +23,8 @@ public class TaskDAOimpl implements TaskDAO
 			pstmt=con.prepareStatement(insertquery);
 			pstmt.setInt(1,task.getUserid());
 			pstmt.setString(2,task.getTask());
-			pstmt.setDate(3,new java.sql.Date(task.getDateassigned().getTime()));
-			pstmt.setDate(4,new java.sql.Date(task.getEnddate().getTime()));
+			pstmt.setDate(3,java.sql.Date.valueOf(task.getDateassigned()));
+			pstmt.setDate(4,java.sql.Date.valueOf(task.getEnddate()));
 			pstmt.setString(5,task.getTaskpriority());
 			pstmt.setString(6,task.getAssignedto());
 			
@@ -40,18 +40,18 @@ public class TaskDAOimpl implements TaskDAO
 	}
 	public void updateTask(Task task)
 	{
-		String updatequery="update task_details set user_id=?,task_name=?,end_date=?,task_priority=?,assigned_to=? where assigned_to_date=?";
+		String updatequery="update task_details set user_id=?,assigned_to_date=?,end_date=?,task_priority=?,assigned_to=? where task_name=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		try
 		{
 			pstmt=con.prepareStatement(updatequery);
 			pstmt.setInt(1, task.getUserid());
-			pstmt.setString(2, task.getTask());
-			pstmt.setDate(3,new java.sql.Date(task.getEnddate().getTime()));
+			pstmt.setDate(2,java.sql.Date.valueOf(task.getDateassigned()));
+			pstmt.setDate(3,java.sql.Date.valueOf(task.getEnddate()));
 			pstmt.setString(4,task.getTaskpriority());
 			pstmt.setString(5,task.getAssignedto());
-			pstmt.setDate(6,new java.sql.Date(task.getDateassigned().getTime()));
+			pstmt.setString(6, task.getTask());
 			int i=pstmt.executeUpdate();
 			System.out.println(i+" Task updated");
 		}
@@ -75,7 +75,7 @@ public class TaskDAOimpl implements TaskDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4),rs.getDate(5),rs.getString(6),rs.getString(7));
+			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7));
 			tasklist.add(task);
 		}
 		}

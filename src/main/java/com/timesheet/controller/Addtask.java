@@ -2,8 +2,11 @@ package com.timesheet.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -43,30 +46,25 @@ public class Addtask extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
+//		String dateStr = sc.nextLine();
+//		DateFormat parser = new SimpleDateFormat("dd-MM-yyyy");
+//			Date timesheetdate1 = parser.parse(dateStr);
+//			DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//			String timesheetdate=(formatter.format(timesheetdate1));
 		PrintWriter out=response.getWriter();
 		String taskname=request.getParameter("taskname");
-		SimpleDateFormat sdf=new SimpleDateFormat("DD-MM-YYYY");
-		Date assigningdate=null;
-		try {
-			assigningdate=sdf.parse(request.getParameter("assigningdate"));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Date endingdate=null;
-		try {
-			endingdate=sdf.parse(request.getParameter("endingdate"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String assigningdate=request.getParameter("assigningdate");
+		LocalDate assdate=LocalDate.parse(assigningdate);
+		String endingdate=request.getParameter("endingdate");
+		LocalDate enddate=LocalDate.parse(endingdate);
 		String priority=request.getParameter("priority");
 		String username=request.getParameter("username");
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		int id=userdao.findUserId(username);
 		System.out.println(id+taskname+assigningdate+endingdate+priority+username);
-		Task task=new Task(id,taskname,assigningdate,endingdate,priority,username);
+		Task task=new Task(id,taskname,assdate,enddate,priority,username);
 		taskdao.insertTask(task);
 		out.println("task successfully added");
 	}

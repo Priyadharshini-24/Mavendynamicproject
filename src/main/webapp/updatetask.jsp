@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>add task</title>
-    <style>
+<title>Update Task</title>
+<style>
         a
         {
             
@@ -51,7 +51,7 @@
         text-decoration: underline;
         }    */
     </style>
-    <link rel="stylesheet" href="addtask.css">
+    <link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
     <h1 align="center">TRACK YOUR TIME</h1>
@@ -72,6 +72,34 @@
         <li><a href="view task.jsp">View Task</a><br><br></li>
         </ul>
     </div>
-
+    <div class="box">
+        <form method="post" action="addtask">
+            <table>
+                <tr>
+       <th><label for="taskname">Enter Task Name</label></th>
+       <td><input type="text" name="taskname" required></td>
+    </tr>
+    <tr>
+       <th> <label for="assigningdate">Enter Task Assigning Date</label></th>
+        <td><input type="date" name="assigningdate" required></td>
+    </tr>
+    <tr>
+       <th><label for="endingdate">Enter Task Ending Date</label></th>
+       <td><input type="date" name="endingdate" required></td>
+    </tr>
+     <tr>
+       <th><label for="priority">Enter Task Priority</label></th>
+       <td><input type="text" name="priority" required></td>
+    </tr>
+     <tr>
+       <th><label for="assignedto">Task Assigned To</label></th>
+       <td><input type="email" name="username" required></td>
+    </tr>
+    </table><br><br>
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
+   &nbsp; &nbsp; <input type="reset"value="Reset">
+    </form>
+        
+    </div>
 </body>
 </html>
