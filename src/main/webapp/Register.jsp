@@ -29,11 +29,29 @@
             padding: 4px 15px;
             border-radius: 5px;
           }
+           button
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
           
     </style>
+    <script>
+    function myfunction()
+    {
+    	var pswd = document.getElementById("password");
+    	var cpswd = document.getElementById("Confirm_password");
+    	if(pswd!=cpswd)
+    		{
+    		document.getElementById("password").style.borderColor = "#E34234";
+            document.getElementById("Confirm_password").style.borderColor = "#E34234";
+    		}
+    }
+    </script>
+    
 </head>
-<body style="background-image:url(images/Time1.jpg)";>
-    <form action="Registerservlet" method="post">
+<body style="background-image:url(images/Time1.jpg)">   
+    <form action="Registerservlet" method="post" id="regForm">
         <fieldset>
             <legend ><b>Sign Up</b></legend>
             <label for="firstname">First Name</label><br>
@@ -41,14 +59,16 @@
             <label for="lastname">Last Name</label><br>
             <input type="text" id="Last_Name" name="lastname" pattern="[A-Za-z]{3,}" required><br><br>
             <label for="username">User Name</label><br>
-            <input type="email" id="User_Name" name="username" required><br><br>
+            <input type="email" id="User_Name" name="username" pattern="[a-z][a-z0-9_.]+@[a-z0-9.]+[.][a-z]+"  title="Sample xyz12@gmail.com" required><br><br>
             <label for="password">Password</label><br>
-            <input type="password" id="password" name="password" pattern="[A-Za-z0-9]+[@#.]+{8,15}" required><br><br>
+            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Sample Xyz12@" required><br><br>
             <label for="password">Confirm Password</label><br>
-            <input type="password" id="Confirm_password" name="Confirm_password" pattern="[A-Za-z0-9]+[@#.]+{8,15}" required><br><br>
-            &nbsp;&nbsp;<input type="submit" name="submit"> &nbsp; &nbsp;
-           <a href="Login.html"><input type="button" value="Cancel"></a> 
+            <input type="password" id="Confirm_password" name="Confirm_password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Enter confirm password same as password " required><br><br>
+            &nbsp;&nbsp;<button type="submit" onclick="myfunction()">Submit</button>&nbsp; &nbsp;
+           <input type="reset" value="Reset"><br><br>
+           Have already an account?<a href="login.jsp">Login here</a> 
         </fieldset>
     </form>  
+    
 </body>
 </html>
