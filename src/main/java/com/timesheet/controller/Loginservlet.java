@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
@@ -43,6 +44,7 @@ public class Loginservlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
+		HttpSession session = request.getSession();
 		PrintWriter out=response.getWriter();
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
@@ -50,15 +52,18 @@ public class Loginservlet extends HttpServlet {
 		AdminDAOimpl admindao=new AdminDAOimpl();
 		User validuser=userdao.validateUser(username, password);
 		User validadmin=admindao.validateAdmin(username, password);
+//		System.out.println(validuser.getUsername());
 		if(validuser!=null)
 		{
-			out.println("Login as "+validuser.getFirstname());
+			//out.println("Login as "+validuser.getFirstname());
+			session.setAttribute("username",validuser.getUsername());
 		RequestDispatcher reqdis=request.getRequestDispatcher("index.jsp");
 		reqdis.forward(request, response);
 		}
 		else if(validadmin!=null)
 		{
 		  out.println("Login as "+validadmin.getFirstname()+" Admin");
+		  session.setAttribute("adminuser",validadmin.getFirstname());
 		    RequestDispatcher reqdis=request.getRequestDispatcher("adminindex.jsp");
 			reqdis.forward(request, response);
 		}
@@ -70,3 +75,5 @@ public class Loginservlet extends HttpServlet {
 	}
 
 }
+//HttpSession session=request.getSession();
+//session.setAttribute("adminuser",validadmin.getUsername());

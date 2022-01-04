@@ -9,6 +9,7 @@ public interface UserDAO {
 	public User validateUser(String username,String password);
 	public void updateUser(User user);
 	public List<User> showalluser();
-	public void removeUser(String username);
+	public List<User> showuser(String username);
+	public void removeUser(String username,String role);
 	public int findUserId(String username);
 }

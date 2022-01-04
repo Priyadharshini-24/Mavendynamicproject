@@ -14,4 +14,48 @@
 		<servlet-name>Addtask</servlet-name>
 		<servlet-class>com.timesheet.controller.Addtask</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Addtimesheet</display-name>
+		<servlet-name>Addtimesheet</servlet-name>
+		<servlet-class>com.timesheet.controller.Addtimesheet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Timesheet</display-name>
+		<servlet-name>Timesheet</servlet-name>
+		<servlet-class>com.timesheet.controller.Timesheet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Rejecttedtimesheetservlet</display-name>
+		<servlet-name>Rejecttedtimesheetservlet</servlet-name>
+		<servlet-class>com.timesheet.controller.Rejecttedtimesheetservlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Reportservlet</display-name>
+		<servlet-name>Reportservlet</servlet-name>
+		<servlet-class>com.timesheet.controller.Reportservlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Addtimesheet</servlet-name>
+		<url-pattern>/Addtimesheet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Timesheet</servlet-name>
+		<url-pattern>/Timesheet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Rejecttedtimesheetservlet</servlet-name>
+		<url-pattern>/Rejecttedtimesheetservlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Reportservlet</servlet-name>
+		<url-pattern>/Reportservlet</url-pattern>
+	</servlet-mapping>
 </web-app>

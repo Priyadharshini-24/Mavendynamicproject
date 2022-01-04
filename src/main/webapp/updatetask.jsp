@@ -57,27 +57,27 @@
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
-        <a href="#index.html"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a href="timesheet.html"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a href="#timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
-        <a href="report.html"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="users.html"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a href="Login.html"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
+        <a href="showalluser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav><br><br>
     <div class="sidebar"> 
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
         <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
-        <li><a href="deletetask.jsp">Delete Task</a><br><br></li>
-        <li><a href="view task.jsp">View Task</a><br><br></li>
+        <li><a href="showalltask.jsp">View Task</a><br><br></li>
         </ul>
     </div>
     <div class="box">
-        <form method="post" action="addtask">
+        <form method="post" action="">
             <table>
                 <tr>
        <th><label for="taskname">Enter Task Name</label></th>
        <td><input type="text" name="taskname" required></td>
+       <td><input type="submit"value="Submit"></td>
     </tr>
     <tr>
        <th> <label for="assigningdate">Enter Task Assigning Date</label></th>

@@ -61,7 +61,7 @@
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="users.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <br><br>
@@ -69,8 +69,8 @@
         <ul>
         <li><a href="timesheetmain.jsp">Add Timesheet</a><br><br></li>
         <li><a href="updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
-        <li><a href="deletetimesheet.jsp">Delete Timesheet</a><br><br></li>
-        <li><a href="view timesheet.jsp">View Timesheet</a><br><br></li>
+         <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
+        <li><a href="viewtimesheet.jsp">View Timesheet</a><br><br></li>
         </ul>
     </div>
 </body>

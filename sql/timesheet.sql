@@ -36,9 +36,12 @@ ASSIGNED_TO VARCHAR2(50)NOT NULL,
 CREATED_DATE DATE DEFAULT SYSDATE NOT NULL,
 CONSTRAINT PK_TASK_DETAILS PRIMARY KEY (TASK_ID));
 
+alter table task_details add total_working_hrs number not null; 
+
 SELECT * FROM USER_DETAILS order by user_id;
 select * from task_details;
 DESC TASK_DETAILS;
+select  sysdate - to_date('2021-12-31', 'yyyy-mm-dd') from dual;
 
 --select (to_date(assigned_to_date,'dd')-to_date(end_date,'dd'))as noofdays from task_details where task_id=43;
 

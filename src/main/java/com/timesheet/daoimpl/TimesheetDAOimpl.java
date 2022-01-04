@@ -27,7 +27,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			pstmt.setInt(2, timesheet.getTaskid());
 			pstmt.setInt(3, timesheet.getSpendtime());
 			pstmt.setString(4,timesheet.getComments());
-			pstmt.setString(5,timesheet.getTimesheetfordate());
+			pstmt.setDate(5,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
 			pstmt.executeUpdate();
 			System.out.println("Timesheet Entered successfully");
 			
@@ -50,7 +50,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			pstmt.setInt(2, timesheet.getTaskid());
 			pstmt.setInt(3, timesheet.getSpendtime());
 			pstmt.setString(4,timesheet.getComments());
-			pstmt.setString(5,timesheet.getTimesheetfordate());
+			pstmt.setDate(5,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
 			pstmt.executeUpdate();
 			int i=pstmt.executeUpdate();
 			System.out.println(i+" Timesheet updated");
@@ -61,10 +61,10 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			System.out.println("something went wrong");
 		}
 	}
-	public List<Timesheet> showTimesheet()
+	public List<Timesheet> showTimesheet(int userid)
 	{
 		List<Timesheet> timesheetlist=new ArrayList<Timesheet>();
-		String selectquery="select * from timesheets";
+		String selectquery="select * from timesheets where user_id='"+userid+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -75,7 +75,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Timesheet timesheet=new Timesheet(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6));
+			Timesheet timesheet=new Timesheet(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getDate(6).toLocalDate());
 			timesheetlist.add(timesheet);
 		}
 		}
@@ -87,25 +87,25 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		
 		return timesheetlist;
 	}
-	public void removeTimesheet(String timesheetfordate)
-	{
-		String removequery="delete from timesheets where timesheet_for_date=?";
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		try
-		{
-			pstmt=con.prepareStatement(removequery);
-		    pstmt.setString(1,timesheetfordate);
-		    int i=pstmt.executeUpdate();
-            System.out.println(i+" Timesheet Remove ");
-			
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			System.out.println("something went wrong");
-		}
-		}
+//	public void removeTimesheet(String timesheetfordate)
+//	{
+//		String removequery="delete from timesheets where timesheet_for_date=?";
+//		Connection con=Connectionutil.getDbConnection();
+//		PreparedStatement pstmt=null;
+//		try
+//		{
+//			pstmt=con.prepareStatement(removequery);
+//		    pstmt.setString(1,timesheetfordate);
+//		    int i=pstmt.executeUpdate();
+//            System.out.println(i+" Timesheet Remove ");
+//			
+//		}
+//		catch(SQLException e)
+//		{
+//			e.printStackTrace();
+//			System.out.println("something went wrong");
+//		}
+//		}
 	public  int findTimesheetId(String timesheetfordate)
 	{
 		String findUser="select timesheet_id from timesheets where timesheet_for_date='"+timesheetfordate+"'";

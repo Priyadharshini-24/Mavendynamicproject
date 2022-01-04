@@ -55,10 +55,10 @@ public class StatusDAOimpl implements StatusDAO
 				System.out.println("something went wrong");
 			}
     }
-	 public List<Status> showStatus()
+	 public List<Status> showStatus(int timesheetid)
 	 {
 		List<Status> statuslist =new ArrayList<Status>();
-		String selectquery="select * from status";
+		String selectquery="select * from status where timesheet_id='"+timesheetid+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -80,23 +80,23 @@ public class StatusDAOimpl implements StatusDAO
 		}
 		return statuslist; 
 	 }
-	public void removeStatus(int timesheetid)
-	{
-		String removequery="delete from status where timesheet_id=?";
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		try
-		{
-			pstmt=con.prepareStatement(removequery);
-		    pstmt.setInt(1,timesheetid);
-		    int i=pstmt.executeUpdate();
-            System.out.println(i+" Status Remove ");
-			
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			System.out.println("something went wrong");
-		}
-	}
+//	public void removeStatus(int timesheetid)
+//	{
+//		String removequery="delete from status where timesheet_id=?";
+//		Connection con=Connectionutil.getDbConnection();
+//		PreparedStatement pstmt=null;
+//		try
+//		{
+//			pstmt=con.prepareStatement(removequery);
+//		    pstmt.setInt(1,timesheetid);
+//		    int i=pstmt.executeUpdate();
+//            System.out.println(i+" Status Remove ");
+//			
+//		}
+//		catch(SQLException e)
+//		{
+//			e.printStackTrace();
+//			System.out.println("something went wrong");
+//		}
+//	}
 }

@@ -88,6 +88,33 @@ public class TaskDAOimpl implements TaskDAO
 		return tasklist;
 		
 	}
+	public List<Task> showTask(String username)
+	{
+		List<Task> tasklist=new ArrayList<Task>();
+		String selectquery="select * from task_details where assigned_to='"+username+"'";
+		Connectionutil conutil=new Connectionutil();
+		Connection con=conutil.getDbConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try
+		{
+			pstmt=con.prepareStatement(selectquery);	
+			rs=pstmt.executeQuery();
+		while(rs.next())
+		{
+			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7));
+			tasklist.add(task);
+		}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("somthing went wrong");
+		}
+		
+		return tasklist;
+		
+	}
 	public  int findtaskId(String task)
 	{
 		String findtask="select task_id from task_details where task_name= '"+task+"'";

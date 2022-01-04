@@ -1,4 +1,3 @@
-
 <%@page import="com.timesheet.model.User"%>
 <%@page import="java.util.*"%>
 <%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
@@ -20,12 +19,14 @@
 <body>
 <% UserDAOimpl userdao = new UserDAOimpl();
    List<User> userList = new ArrayList<User>();
-   userList = userdao.showalluser();
+   User user=new User();
+   String username=(String)session.getAttribute("username");
+   userList = userdao.showuser(username);
 %>
 
 
 <table border="1" id="allusers">
-	<h1><b>All Users List</b></h1>
+	<h1><b>User Profile</b></h1>
 	<thead>
 	<tr>
   		<th >S.no</th>
@@ -60,5 +61,3 @@ i++;
 
 </body>
 </html>
-
-

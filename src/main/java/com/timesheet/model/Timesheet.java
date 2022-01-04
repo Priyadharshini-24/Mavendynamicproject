@@ -1,5 +1,6 @@
 package com.timesheet.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Timesheet {
@@ -7,7 +8,7 @@ public class Timesheet {
 	private int taskid;
 	private int spendtime;
 	private String comments;
-	private String timesheetfordate;
+	private LocalDate timesheetfordate;
 	public int getUserid() {
 		return userid;
 	}
@@ -32,16 +33,16 @@ public class Timesheet {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public String getTimesheetfordate() {
+	public LocalDate getTimesheetfordate() {
 		return timesheetfordate;
 	}
-	public void setTimesheetfordate(String timesheetfordate) {
+	public void setTimesheetfordate(LocalDate timesheetfordate) {
 		this.timesheetfordate = timesheetfordate;
 	}
 	public Timesheet() {
 		super();
 	}
-	public Timesheet(int userid, int taskid, int spendtime, String comments, String timesheetfordate)
+	public Timesheet(int userid, int taskid, int spendtime, String comments, LocalDate timesheetfordate)
 	{
 		super();
 		this.userid = userid;
