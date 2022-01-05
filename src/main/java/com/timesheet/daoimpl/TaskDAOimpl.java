@@ -12,8 +12,9 @@ import com.timesheet.model.Task;
 import com.timesheet.util.Connectionutil;
 public class TaskDAOimpl implements TaskDAO
 {
-	public void insertTask(Task task)
+	public boolean insertTask(Task task)
 	{
+		boolean flag=false;
 		String insertquery="insert into task_details(user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to)values(?,?,?,?,?,?)";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
@@ -28,18 +29,22 @@ public class TaskDAOimpl implements TaskDAO
 			pstmt.setString(5,task.getTaskpriority());
 			pstmt.setString(6,task.getAssignedto());
 			
-			pstmt.executeUpdate();
-			System.out.println("Task add successfully");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
 			
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("Task not added");
+//			System.out.println("Task not added");
 		}
+		return flag;
 	}
-	public void updateTask(Task task)
+	public boolean updateTask(Task task)
 	{
+		boolean flag=false;
 		String updatequery="update task_details set user_id=?,assigned_to_date=?,end_date=?,task_priority=?,assigned_to=? where task_name=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -52,14 +57,19 @@ public class TaskDAOimpl implements TaskDAO
 			pstmt.setString(4,task.getTaskpriority());
 			pstmt.setString(5,task.getAssignedto());
 			pstmt.setString(6, task.getTask());
-			int i=pstmt.executeUpdate();
-			System.out.println(i+" Task updated");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" Task updated");
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 			System.out.println("something went wrong");
 		}
+		return flag;
 	}
 	public List<Task> showallTask()
 	{
@@ -135,8 +145,9 @@ public class TaskDAOimpl implements TaskDAO
 		return taskId;
 		
 	}
-	public void removeTask(String task)
+	public boolean removeTask(String task)
 	{
+		boolean flag=false;
 		String removequery="delete from task_details where task_name=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -144,8 +155,12 @@ public class TaskDAOimpl implements TaskDAO
 		{
 			pstmt=con.prepareStatement(removequery);
 			pstmt.setString(1,task);
-			int i=pstmt.executeUpdate();
-			System.out.println(i+" Task Remove successfully");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" Task Remove successfully");
 			
 		}
 		catch(SQLException e)
@@ -153,5 +168,6 @@ public class TaskDAOimpl implements TaskDAO
 			e.printStackTrace();
 			System.out.println("Task not Removed");
 		}
+		return flag;
 	}
 }

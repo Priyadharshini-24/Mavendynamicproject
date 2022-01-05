@@ -5,11 +5,11 @@ import java.util.List;
 import com.timesheet.model.User;
 
 public interface UserDAO {
-	public void insertUser(User user);
+	public boolean insertUser(User user);
 	public User validateUser(String username,String password);
-	public void updateUser(User user);
+	public boolean updateUser(User user);
 	public List<User> showalluser();
 	public List<User> showuser(String username);
-	public void removeUser(String username,String role);
+	public boolean removeUser(String username,String role);
 	public int findUserId(String username);
 }

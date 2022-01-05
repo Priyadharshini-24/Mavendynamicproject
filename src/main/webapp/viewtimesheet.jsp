@@ -13,8 +13,6 @@
 <title>View Timesheet</title>
 <style>
 #allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
         padding: 10px;
         }
 </style>
@@ -30,7 +28,7 @@ List<Timesheet> timesheetlist=new ArrayList<Timesheet>();
 timesheetlist=timesheetdao.showTimesheet(userid);
 %>
 
-<table border="1" id="allusers">
+<table  id="allusers">
 	<h1><b>Timesheet status</b></h1>
 	<h4>User name :<%=username%></h4>
 	<thead>

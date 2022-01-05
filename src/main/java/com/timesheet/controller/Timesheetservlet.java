@@ -54,7 +54,15 @@ public class Timesheetservlet extends HttpServlet {
 		int spendinghrs=Integer.parseInt(request.getParameter("spendinghrs"));
 		String comments=request.getParameter("comments");
 		Timesheet timesheet=new Timesheet(id,id1,spendinghrs,comments,timesheetdate);
-		timesheetdao.insertTimesheet(timesheet);
+		boolean flag=timesheetdao.insertTimesheet(timesheet);
+		if(flag)
+		{
+//			int taskid=taskdao.findtaskId(taskname);
+//			request.setAttribute("taskid", taskid);
+			request.setAttribute("timesheet","Timesheet Added Successfully");
+//			request.setAttribute("taskname",taskname);
+		}
+		request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
 	}
 
 }

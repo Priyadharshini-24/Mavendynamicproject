@@ -116,6 +116,15 @@
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
    &nbsp; &nbsp; <input type="reset"value="Reset">
     </form>
+      <%!
+String flag;
+%>
+<%
+if(request.getAttribute("timesheet") != null){
+flag = request.getAttribute("timesheet").toString();
+%>
+<h4><%= flag%></h4>
+<% }%>
         
     </div>
  

@@ -14,8 +14,9 @@ import com.timesheet.util.Connectionutil;
 
 public class UserDAOimpl implements UserDAO 
 {
-	public void insertUser(User user)
+	public boolean insertUser(User user)
 	{
+		boolean flag=false;
 		String insertquery="insert into user_details(first_name,last_name,user_name,password)values(?,?,?,?)";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
@@ -27,8 +28,11 @@ public class UserDAOimpl implements UserDAO
 			pstmt.setString(2, user.getLastname());
 			pstmt.setString(3, user.getUsername());
 			pstmt.setString(4, user.getPassword());
-			pstmt.executeUpdate();
-			System.out.println("value insert successfully");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			System.out.println("value insert successfully");
 			
 		}
 		catch(SQLException e)
@@ -36,6 +40,7 @@ public class UserDAOimpl implements UserDAO
 			e.printStackTrace();
 			System.out.println("somthing went wrong");
 		}
+		return flag;
 	}
 	
 	public User validateUser(String username,String password)
@@ -59,8 +64,9 @@ public class UserDAOimpl implements UserDAO
 		return user;
 		
 	}
-	public void updateUser(User user)
+	public boolean updateUser(User user)
 	{
+		boolean flag=false;
 		String updatequery="update user_details set first_name=?,last_name=?,password=? where user_name=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -71,14 +77,19 @@ public class UserDAOimpl implements UserDAO
 			pstmt.setString(2, user.getLastname());
 			pstmt.setString(3, user.getPassword());
 			pstmt.setString(4, user.getUsername());
-			int i=pstmt.executeUpdate();
-			System.out.println(i+" user profile updated");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" user profile updated");
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 			System.out.println("something went wrong");
 		}
+		return flag;
 	}
 	
 
@@ -136,8 +147,9 @@ public class UserDAOimpl implements UserDAO
 		return userlist;
 		
 	}
-	public void removeUser(String username,String role)
+	public boolean removeUser(String username,String role)
 	{
+		boolean flag=false;
 		String removequery="update user_details set role=? where user_name='"+username+"'";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -146,8 +158,12 @@ public class UserDAOimpl implements UserDAO
 			pstmt=con.prepareStatement(removequery);
 			pstmt.setString(1,role);
 			pstmt.setString(1,username);
-			int i=pstmt.executeUpdate();
-			System.out.println(i+" User details Remove ");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" User details Remove ");
 			
 		}
 		catch(SQLException e)
@@ -155,6 +171,7 @@ public class UserDAOimpl implements UserDAO
 			e.printStackTrace();
 			System.out.println("something went wrong");
 		}
+		return flag;
 	}
 	public int findUserId(String username)
 	{

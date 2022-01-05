@@ -1,6 +1,6 @@
 package com.timesheet.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Report {
 	private String username;
@@ -8,10 +8,10 @@ public class Report {
 	private String task;
 	private int timesheetid;
 	private int spendhrs;
-	private Date timesheetdate;
+	private LocalDate timesheetdate;
 	private String status;
 	private String approvedby;
-	private Date approvedon;
+	private LocalDate approvedon;
     
 	public String getUsername() {
 		return username;
@@ -53,11 +53,11 @@ public class Report {
 		this.spendhrs = spendhrs;
 	}
 
-	public Date getTimesheetdate() {
+	public LocalDate getTimesheetdate() {
 		return timesheetdate;
 	}
 
-	public void setTimesheetdate(Date timesheetdate) {
+	public void setTimesheetdate(LocalDate timesheetdate) {
 		this.timesheetdate = timesheetdate;
 	}
 
@@ -77,17 +77,17 @@ public class Report {
 		this.approvedby = approvedby;
 	}
 
-	public Date getApprovedon() {
+	public LocalDate getApprovedon() {
 		return approvedon;
 	}
 
-	public void setApprovedon(Date approvedon) {
+	public void setApprovedon(LocalDate approvedon) {
 		this.approvedon = approvedon;
 	}
 
 	
-	public Report(String username, String role, String task, int timesheetid, int spendhrs, Date timesheetdate,
-			String status, String approvedby, Date approvedon) {
+	public Report(String username, String role, String task, int timesheetid, int spendhrs, LocalDate timesheetdate,
+			String status, String approvedby, LocalDate approvedon) {
 		super();
 		this.username = username;
 		this.role = role;

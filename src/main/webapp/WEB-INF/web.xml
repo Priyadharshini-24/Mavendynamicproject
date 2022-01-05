@@ -42,6 +42,13 @@
 		<servlet-name>Reportservlet</servlet-name>
 		<servlet-class>com.timesheet.controller.Reportservlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Addstatus</display-name>
+		<servlet-name>Addstatus</servlet-name>
+		<servlet-class>com.timesheet.controller.Addstatus</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Addtimesheet</servlet-name>
 		<url-pattern>/Addtimesheet</url-pattern>
@@ -57,5 +64,9 @@
 	<servlet-mapping>
 		<servlet-name>Reportservlet</servlet-name>
 		<url-pattern>/Reportservlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Addstatus</servlet-name>
+		<url-pattern>/Addstatus</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -9,11 +9,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.Task;
@@ -51,6 +54,7 @@ public class Addtask extends HttpServlet {
 //			Date timesheetdate1 = parser.parse(dateStr);
 //			DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 //			String timesheetdate=(formatter.format(timesheetdate1));
+		
 		PrintWriter out=response.getWriter();
 		String taskname=request.getParameter("taskname");
 		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -63,10 +67,24 @@ public class Addtask extends HttpServlet {
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		int id=userdao.findUserId(username);
-//		System.out.println(id+taskname+assigningdate+endingdate+priority+username);
+	System.out.println(id+taskname+assigningdate+endingdate+priority+username);
 		Task task=new Task(id,taskname,assdate,enddate,priority,username);
-		taskdao.insertTask(task);
-		out.println("task successfully added");
+		boolean flag=taskdao.insertTask(task);
+		if(flag)
+		{
+//		HttpSession session=request.getSession();
+//		session.setAttribute("task","Task Added Successfully");
+//		session.removeAttribute("task");
+			int taskid=taskdao.findtaskId(taskname);
+			request.setAttribute("taskid", taskid);
+			request.setAttribute("task","Task Added Successfully");
+			request.setAttribute("taskname",taskname);
+			request.setAttribute("assigningdate",assigningdate);
+		}
+		request.getRequestDispatcher("addtaskmain.jsp").forward(request, response);
+//		RequestDispatcher reqdis=request.getRequestDispatcher("addtaskmain.jsp");
+//		reqdis.forward(request, response);
+//		out.println("task successfully added");
 	}
 
 }

@@ -62,14 +62,16 @@ public class Loginservlet extends HttpServlet {
 		}
 		else if(validadmin!=null)
 		{
-		  out.println("Login as "+validadmin.getFirstname()+" Admin");
+//		  out.println("Login as "+validadmin.getFirstname()+" Admin");
 		  session.setAttribute("adminuser",validadmin.getFirstname());
 		    RequestDispatcher reqdis=request.getRequestDispatcher("adminindex.jsp");
 			reqdis.forward(request, response);
 		}
 		else
 		{
-		 out.println("invalid username");	
+		 session.setAttribute("login", "! Invalid Username or Password");
+		 RequestDispatcher reqdis=request.getRequestDispatcher("login.jsp");
+			reqdis.forward(request, response);
 		}
 		
 	}

@@ -54,6 +54,7 @@
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
+ 
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -64,19 +65,19 @@
         <a href="showalluser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav><br><br>
-    <div class="sidebar"> 
+    <div class="sidebar">
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
-        <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
-        <li><a href="showalltask.jsp">View Task</a><br><br></li>
+         <li><a href="showalltask.jsp">View Task</a><br><br></li>
+          <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
         </ul>
     </div>
     <div class="box">
         <form method="post" action="addtask">
             <table>
-                <tr>
+             <tr>
        <th><label for="taskname">Enter Task Name</label></th>
-       <td><input type="text" name="taskname" required></td>
+       <td><input type="text" name="taskname"  required></td>
     </tr>
     <tr>
        <th> <label for="assigningdate">Enter Task Assigning Date</label></th>
@@ -88,7 +89,12 @@
     </tr>
      <tr>
        <th><label for="priority">Enter Task Priority</label></th>
-       <td><input type="text" name="priority" required></td>
+       <td><select  name="priority" required>
+       <option>Low</option>
+       <option>Medium</option>
+       <option>High</option>
+       </select>
+       </td>
     </tr>
      <tr>
        <th><label for="assignedto">Task Assigned To</label></th>
@@ -96,9 +102,17 @@
     </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
-   &nbsp; &nbsp; <input type="reset"value="Reset">
-    </form>
-        
+   &nbsp; &nbsp; <input type="reset"value="Clear">
+    </form> 
+    <%!
+String flag;
+%>
+<%
+if(request.getAttribute("task") != null){
+flag = request.getAttribute("task").toString();
+%>
+<h4><%= flag%></h4>
+<% }%> 
     </div>
 </body>
 </html>

@@ -12,8 +12,9 @@ import com.timesheet.model.Status;
 import com.timesheet.util.Connectionutil;
 public class StatusDAOimpl implements StatusDAO
 {
-	 public void insertStatus(Status status)
+	 public boolean insertStatus(Status status)
 	 {
+		 boolean flag=false;
 		 String insertquery="insert into status(user_id,timesheet_id,status,approved_by)values(?,?,?,?)";
 		 Connectionutil conutil=new Connectionutil();
 			Connection con=conutil.getDbConnection();
@@ -25,17 +26,22 @@ public class StatusDAOimpl implements StatusDAO
 				pstmt.setInt(2,status.getTimesheetid());
 				pstmt.setString(3,status.getStatus());
 				pstmt.setString(4,status.getApprovedby());
-				pstmt.executeUpdate();
-				System.out.println("Status add successfully");
+				if(pstmt.executeUpdate()>0)
+				{
+					flag=true;
+				}
+//				System.out.println("Status add successfully");
 			}
 			catch(SQLException e)
 			{
 				e.printStackTrace();
 				System.out.println("somthing went wrong");
 			}
+			return flag;
 	 }
-	 public void updateStatus(Status status)
+	 public boolean updateStatus(Status status)
 	 {
+		 boolean flag=false;
 		 String updatequery="update status set user_id=?,status=?,approved_by=? where timesheet_id=?";
 		 Connection con=Connectionutil.getDbConnection();
 			PreparedStatement pstmt=null;
@@ -46,14 +52,18 @@ public class StatusDAOimpl implements StatusDAO
 				pstmt.setString(2,status.getStatus());
 				pstmt.setString(3,status.getApprovedby());
 				pstmt.setInt(4,status.getTimesheetid());
-				int i=pstmt.executeUpdate();
-				System.out.println(i+" Status updated");
+				if(pstmt.executeUpdate()>0)
+				{
+					flag=true;
+				}
+//				System.out.println(i+" Status updated");
 	          }
 			catch(SQLException e)
 			{
 				e.printStackTrace();
 				System.out.println("something went wrong");
 			}
+			return flag;
     }
 	 public List<Status> showStatus(int timesheetid)
 	 {
@@ -80,8 +90,9 @@ public class StatusDAOimpl implements StatusDAO
 		}
 		return statuslist; 
 	 }
-//	public void removeStatus(int timesheetid)
+//	public boolean removeStatus(int timesheetid)
 //	{
+//	    boolean flag=false;
 //		String removequery="delete from status where timesheet_id=?";
 //		Connection con=Connectionutil.getDbConnection();
 //		PreparedStatement pstmt=null;
@@ -89,7 +100,10 @@ public class StatusDAOimpl implements StatusDAO
 //		{
 //			pstmt=con.prepareStatement(removequery);
 //		    pstmt.setInt(1,timesheetid);
-//		    int i=pstmt.executeUpdate();
+//		   if(pstmt.executeUpdate()>0)
+//		{
+//			flag=true;
+//		}
 //            System.out.println(i+" Status Remove ");
 //			
 //		}
@@ -98,5 +112,6 @@ public class StatusDAOimpl implements StatusDAO
 //			e.printStackTrace();
 //			System.out.println("something went wrong");
 //		}
+//	 return flag;
 //	}
 }

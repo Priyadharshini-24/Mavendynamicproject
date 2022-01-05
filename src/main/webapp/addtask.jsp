@@ -51,7 +51,7 @@
         text-decoration: underline;
         }    */
     </style>
-    <link rel="stylesheet" href="addtask.css">
+    <link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
     <h1 align="center">TRACK YOUR TIME</h1>
@@ -67,10 +67,10 @@
     <div class="sidebar"> 
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
-        <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
+        <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
         <li><a href="showalltask.jsp">View Task</a><br><br></li>
+        <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
         </ul>
     </div>
-
 </body>
 </html>

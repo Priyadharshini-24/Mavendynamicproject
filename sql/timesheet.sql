@@ -1,5 +1,4 @@
 
-
 CREATE TABLE USER_DETAILS
 (USER_ID NUMBER GENERATED ALWAYS AS IDENTITY(START WITH 1 INCREMENT BY 1),
 FIRST_NAME VARCHAR2(50) NOT NULL,
@@ -40,6 +39,7 @@ alter table task_details add total_working_hrs number not null;
 
 SELECT * FROM USER_DETAILS order by user_id;
 select * from task_details;
+--delete from task_details where task_id=66;
 DESC TASK_DETAILS;
 select  sysdate - to_date('2021-12-31', 'yyyy-mm-dd') from dual;
 
@@ -62,7 +62,7 @@ TIMESHEET_UPDATE_DATE DATE DEFAULT SYSDATE NOT NULL,
 CONSTRAINT PK_TIMESHEETS PRIMARY KEY (TIMESHEET_ID)
 );
 select * from timesheets;
-DROP TABLE TIMESHEETS;
+--DROP TABLE TIMESHEETS;
 DESC TIMESHEETS;
 
 CREATE TABLE STATUS(
@@ -78,6 +78,7 @@ CONSTRAINT PK_STATUS PRIMARY KEY(STATUS_ID)
 );
 select * from status;
 select * from status where status='rejected';
+commit;
 
 select * from status inner join timesheets on status.timesheet_id=timesheets.timesheet_id where status='rejected';
 

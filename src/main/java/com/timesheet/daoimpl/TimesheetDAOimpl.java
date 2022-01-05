@@ -14,8 +14,9 @@ import com.timesheet.util.Connectionutil;
 
 public class TimesheetDAOimpl implements TimesheetDAO 
 {
-	public void insertTimesheet(Timesheet timesheet)
+	public boolean insertTimesheet(Timesheet timesheet)
 	{
+		boolean flag=false;
 		String insertquery="insert into timesheets(user_id,task_id,spend_time_hrs,comments,timesheet_for_date)values(?,?,?,?,?)";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
@@ -28,8 +29,12 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			pstmt.setInt(3, timesheet.getSpendtime());
 			pstmt.setString(4,timesheet.getComments());
 			pstmt.setDate(5,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
-			pstmt.executeUpdate();
-			System.out.println("Timesheet Entered successfully");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+			
+//			System.out.println("Timesheet Entered successfully");
 			
 		}
 		catch(SQLException e)
@@ -37,9 +42,11 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			e.printStackTrace();
 			System.out.println("somthing went wrong");
 		}
+		return flag;
 	}
-	public void updateTimesheet(Timesheet timesheet)
+	public boolean updateTimesheet(Timesheet timesheet)
 	{
+		boolean flag=false;
 		String updatequery="update timesheets set user_id=?,task_id=?,spend_time_hrs=?,comments=? where timesheet_for_date=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -51,15 +58,19 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			pstmt.setInt(3, timesheet.getSpendtime());
 			pstmt.setString(4,timesheet.getComments());
 			pstmt.setDate(5,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
-			pstmt.executeUpdate();
-			int i=pstmt.executeUpdate();
-			System.out.println(i+" Timesheet updated");
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" Timesheet updated");
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 			System.out.println("something went wrong");
 		}
+		return flag;
 	}
 	public List<Timesheet> showTimesheet(int userid)
 	{
@@ -87,8 +98,9 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		
 		return timesheetlist;
 	}
-//	public void removeTimesheet(String timesheetfordate)
+//	public boolean removeTimesheet(String timesheetfordate)
 //	{
+//	     boolean flag=false;
 //		String removequery="delete from timesheets where timesheet_for_date=?";
 //		Connection con=Connectionutil.getDbConnection();
 //		PreparedStatement pstmt=null;
@@ -96,6 +108,10 @@ public class TimesheetDAOimpl implements TimesheetDAO
 //		{
 //			pstmt=con.prepareStatement(removequery);
 //		    pstmt.setString(1,timesheetfordate);
+//	    if(pstmt.executeUpdate()>0)
+//	     {
+//		  flag=true;
+//	      }
 //		    int i=pstmt.executeUpdate();
 //            System.out.println(i+" Timesheet Remove ");
 //			
@@ -105,6 +121,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 //			e.printStackTrace();
 //			System.out.println("something went wrong");
 //		}
+//	    return flag;
 //		}
 	public  int findTimesheetId(String timesheetfordate)
 	{
