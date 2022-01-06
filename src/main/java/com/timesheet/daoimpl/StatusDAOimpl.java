@@ -90,6 +90,31 @@ public class StatusDAOimpl implements StatusDAO
 		}
 		return statuslist; 
 	 }
+	 public List<Status> showallStatus()
+	 {
+		List<Status> statuslist =new ArrayList<Status>();
+		String selectquery="select * from status";
+		Connectionutil conutil=new Connectionutil();
+		Connection con=conutil.getDbConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try
+		{
+			pstmt=con.prepareStatement(selectquery);	
+			rs=pstmt.executeQuery();
+		while(rs.next())
+		{
+			Status status=new Status(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5));
+			statuslist.add(status);
+		}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("somthing went wrong");
+		}
+		return statuslist; 
+	 }
 //	public boolean removeStatus(int timesheetid)
 //	{
 //	    boolean flag=false;

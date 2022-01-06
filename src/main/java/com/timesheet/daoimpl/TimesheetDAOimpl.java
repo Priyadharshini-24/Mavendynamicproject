@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +99,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		
 		return timesheetlist;
 	}
+	
 //	public boolean removeTimesheet(String timesheetfordate)
 //	{
 //	     boolean flag=false;
@@ -123,9 +125,9 @@ public class TimesheetDAOimpl implements TimesheetDAO
 //		}
 //	    return flag;
 //		}
-	public  int findTimesheetId(String timesheetfordate)
+	public  int findTimesheetId(LocalDate timesheetfordate)
 	{
-		String findUser="select timesheet_id from timesheets where timesheet_for_date='"+timesheetfordate+"'";
+		String findUser="select timesheet_id from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetfordate+"'";
 		Connection con=Connectionutil.getDbConnection();
 		Statement stmt;
 		int timesheetId=0;

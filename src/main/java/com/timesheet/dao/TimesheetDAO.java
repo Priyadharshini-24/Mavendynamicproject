@@ -1,5 +1,6 @@
 package com.timesheet.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.timesheet.model.Timesheet;
@@ -9,5 +10,5 @@ public interface TimesheetDAO {
 	public boolean updateTimesheet(Timesheet timesheet);
 	public List<Timesheet> showTimesheet(int userid);
 //	public boolean removeTimesheet(String timesheetfordate);
-	public  int findTimesheetId(String timesheetfordate);
+	public  int findTimesheetId(LocalDate timesheetfordate);
 }

@@ -62,6 +62,8 @@ TIMESHEET_UPDATE_DATE DATE DEFAULT SYSDATE NOT NULL,
 CONSTRAINT PK_TIMESHEETS PRIMARY KEY (TIMESHEET_ID)
 );
 select * from timesheets;
+select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id from timesheets ts 
+inner join user_details ud on ts.user_id=ud.user_id;
 --DROP TABLE TIMESHEETS;
 DESC TIMESHEETS;
 

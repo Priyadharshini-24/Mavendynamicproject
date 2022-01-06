@@ -47,7 +47,7 @@ System.out.println("jsp page "+view.getTimesheetid());
 <td>User Role :&nbsp;&nbsp;&nbsp;<%=view.getRole()%></td>
 </tr>
 <tr>
-<td>Task Name :</td>
+<td>Task Name : </td>
 <td><%=view.getTask()%></td>
 </tr>
 <tr>

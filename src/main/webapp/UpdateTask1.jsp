@@ -57,14 +57,6 @@
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
 
-<%String taskName=request.getParameter("taskname").toLowerCase();
-String query="select * from task_details where lower(task_name) like '"+taskName+"%'";
-Connectionutil conutil=new Connectionutil();
-Connection con=conutil.getDbConnection();
-Statement stmt=con.createStatement();
-ResultSet rs=stmt.executeQuery(query);
-if(rs.next()){
-%>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -82,15 +74,24 @@ if(rs.next()){
         <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
         </ul>
     </div>
+    <%!String taskName; %>
+<% 
+ taskName=request.getParameter("taskname");
+String query="select * from task_details where task_name like '"+taskName+"%'";
+Connectionutil conutil=new Connectionutil();
+Connection con=conutil.getDbConnection();
+Statement stmt=con.createStatement();
+ResultSet rs=stmt.executeQuery(query);
+if(rs.next()){
+%>
     <div class="box">
-    <form action="UpdateTask1.jsp">     <tr>
+        <form method="post" action="updatetask">
+            <table>
+            <tr>
        <th><label for="taskname">Enter Task Name</label></th>
-       <td><input type="text" name="taskname" value="<%=rs.getString(3) %>" required></td>
+       <td><input type="text" name="taskname" value="<%=rs.getString(3) %>" readonly required></td>
        <td><input type="submit"value="Search"></td>
     </tr>
-    </form>
-        <form method="post" action="">
-            <table>
            
     <tr>
        <th> <label for="assigningdate">Enter Task Assigning Date</label></th>
@@ -109,10 +110,21 @@ if(rs.next()){
        <td><input type="email" name="username" value="<%=rs.getString(7)%>" required></td>
     </tr>
     </table><br><br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
-   &nbsp; &nbsp; <input type="reset"value="Reset">
-    </form>
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+   <input type="submit"value="Submit">
+   
         <%} %>
+        
+         <%!
+String flag;
+%>
+<%
+if(request.getAttribute("task") != null){
+flag = request.getAttribute("task").toString();
+%>
+<h4><%= flag%></h4>
+<% }%> 
+        </form> 
     </div>
 </body>
 </html>

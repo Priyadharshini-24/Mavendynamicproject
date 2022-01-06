@@ -8,6 +8,7 @@ public interface StatusDAO {
 	public boolean insertStatus(Status status);
 	public boolean updateStatus(Status status);
 	 public List<Status> showStatus(int timesheetid);
+	 public List<Status> showallStatus();
 //	 public boolean removeStatus(int timesheetid);
 
 }

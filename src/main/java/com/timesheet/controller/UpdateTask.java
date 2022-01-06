@@ -1,36 +1,29 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.Task;
-@WebServlet("/addtask")
+@WebServlet("/updatetask")
 /**
- * Servlet implementation class Addtask
+ * Servlet implementation class UpdateTask
  */
-public class Addtask extends HttpServlet {
+public class UpdateTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Addtask() {
+    public UpdateTask() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,14 +42,6 @@ public class Addtask extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
-//		String dateStr = sc.nextLine();
-//		DateFormat parser = new SimpleDateFormat("dd-MM-yyyy");
-//			Date timesheetdate1 = parser.parse(dateStr);
-//			DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-//			String timesheetdate=(formatter.format(timesheetdate1));
-		
-		PrintWriter out=response.getWriter();
-		String taskname=request.getParameter("taskname");
 		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
@@ -67,21 +52,13 @@ public class Addtask extends HttpServlet {
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		int id=userdao.findUserId(username);
-//	  System.out.println(id+taskname+assigningdate+endingdate+priority+username);
-		Task task=new Task(id,taskname,assdate,enddate,priority,username);
-		boolean flag=taskdao.insertTask(task);
+		Task task=new Task(id,null,assdate,enddate,priority,username);
+		boolean flag=taskdao.updateTask(task);
 		if(flag)
 		{
-//		HttpSession session=request.getSession();
-//		session.setAttribute("task","Task Added Successfully");
-//		session.removeAttribute("task");
-			int taskid=taskdao.findtaskId(taskname);
-			request.setAttribute("taskid", taskid);
-			request.setAttribute("task","Task Added Successfully");
-			request.setAttribute("taskname",taskname);
-			request.setAttribute("assigningdate",assigningdate);
+			request.setAttribute("task","Task Updated Successfully");
 		}
-		request.getRequestDispatcher("addtaskmain.jsp").forward(request, response);
+		request.getRequestDispatcher("UpdateTask1.jsp").forward(request, response);
 //		RequestDispatcher reqdis=request.getRequestDispatcher("addtaskmain.jsp");
 //		reqdis.forward(request, response);
 //		out.println("task successfully added");
