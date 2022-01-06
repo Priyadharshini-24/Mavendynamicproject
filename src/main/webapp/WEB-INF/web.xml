@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <web-app id="WebApp_ID" version="2.4" xmlns="http://jAVA.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<servlet>
 		<description>
@@ -7,7 +8,9 @@
 		<servlet-name>Loginservlet</servlet-name>
 		<servlet-class>Controller.Loginservlet</servlet-class>
 	</servlet>
+	
 	<servlet>
+	
 		<description>
 		</description>
 		<display-name>Addtask</display-name>
@@ -56,6 +59,20 @@
 		<servlet-name>UpdateTask</servlet-name>
 		<servlet-class>com.timesheet.controller.UpdateTask</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>UpdateTimesheet</display-name>
+		<servlet-name>UpdateTimesheet</servlet-name>
+		<servlet-class>com.timesheet.controller.UpdateTimesheet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>UpdateStatus</display-name>
+		<servlet-name>UpdateStatus</servlet-name>
+		<servlet-class>com.timesheet.controller.UpdateStatus</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Addtimesheet</servlet-name>
 		<url-pattern>/Addtimesheet</url-pattern>
@@ -79,5 +96,13 @@
 	<servlet-mapping>
 		<servlet-name>UpdateTask</servlet-name>
 		<url-pattern>/UpdateTask</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateTimesheet</servlet-name>
+		<url-pattern>/UpdateTimesheet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateStatus</servlet-name>
+		<url-pattern>/UpdateStatus</url-pattern>
 	</servlet-mapping>
 </web-app>

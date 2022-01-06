@@ -48,17 +48,18 @@ public class TimesheetDAOimpl implements TimesheetDAO
 	public boolean updateTimesheet(Timesheet timesheet)
 	{
 		boolean flag=false;
-		String updatequery="update timesheets set user_id=?,task_id=?,spend_time_hrs=?,comments=? where timesheet_for_date=?";
+		String updatequery="update timesheets set user_id=?,spend_time_hrs=?,comments=? where timesheet_for_date=?";
+
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		try
 		{
 			pstmt=con.prepareStatement(updatequery);
 			pstmt.setInt(1, timesheet.getUserid());
-			pstmt.setInt(2, timesheet.getTaskid());
-			pstmt.setInt(3, timesheet.getSpendtime());
-			pstmt.setString(4,timesheet.getComments());
-			pstmt.setDate(5,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
+			pstmt.setInt(2, timesheet.getSpendtime());
+			pstmt.setString(3,timesheet.getComments());
+			pstmt.setDate(4,java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
+//			System.out.println("dao"+java.sql.Date.valueOf(timesheet.getTimesheetfordate()));
 			if(pstmt.executeUpdate()>0)
 			{
 				flag=true;

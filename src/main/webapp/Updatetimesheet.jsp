@@ -1,10 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
- <title>Timesheet</title>
+ <title> Update Timesheet</title>
     <style>
         a
         {
@@ -51,7 +52,7 @@
         text-decoration: underline;
         }    */
     </style>
-    <link rel="stylesheet" href="addtask.css">
+    <link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
     <h1 align="center">TRACK YOUR TIME</h1>
@@ -69,9 +70,20 @@
         <ul>
         <li><a href="timesheetmain.jsp">Add Timesheet</a><br><br></li>
         <li><a href="Updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
-         <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
-        <li><a href="viewtimesheet.jsp">View Timesheet</a><br><br></li>
+        <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
+        <li><a href="viewtimesheet.jsp">Timesheet status</a><br><br></li>
         </ul>
     </div>
-</body>
-</html>
+     <div class="box">
+        <form method="post" action="updatetimesheet1.jsp">
+            <table>
+            <tr>
+       <th><label for="timesheetdate">Enter Timesheet Date</label></th>
+       <td><input type="date" min="" max="" name="timesheetdate" required></td>
+       <td><input type="submit"value="Search"></td>
+    </tr>
+    </table>
+    </form>
+     </div>
+    </body>
+    </html>

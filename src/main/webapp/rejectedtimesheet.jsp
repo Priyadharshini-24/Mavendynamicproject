@@ -36,6 +36,7 @@ rejectlist=rejecttimesheetdao.showRejecttimesheet(username);
 		<th>Comments</th>
 		<th>Approved By</th>
 		<th>Status</th>
+		<th>Update Timesheet</th>
 	</tr>
 	</thead>
 	<br><br>
@@ -57,6 +58,7 @@ i++;
 <td> <%=reject.getComments()%></td>
 <td> <%=reject.getApprovedby()%></td>
 <td><%=reject.getStatus()%></td>
+<td><a href="Updatetimesheet.jsp"><button>Edit</button></a></td>
 </tr>
 
 <%

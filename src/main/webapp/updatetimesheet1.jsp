@@ -1,13 +1,14 @@
-<%@page import="com.timesheet.daoimpl.TaskDAOimpl"%>
-<%@page import="com.timesheet.model.User"%>
-<%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
+<%@page import="java.sql.*"%>
+<%@page import="com.timesheet.util.Connectionutil"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
- <title>Timesheet</title>
+ <title> Update Timesheet</title>
     <style>
         a
         {
@@ -57,14 +58,6 @@
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
-   <% UserDAOimpl userdao = new UserDAOimpl();
-   User user=new User();
-   String username=(String)session.getAttribute("username");
-   int uid=userdao.findUserId(username);
-   TaskDAOimpl taskdao=new TaskDAOimpl();
-   taskdao.showTask(username);
-   
-%>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -84,29 +77,34 @@
         <li><a href="viewtimesheet.jsp">Timesheet status</a><br><br></li>
         </ul>
     </div>
+     <%DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String timedate=request.getParameter("timesheetdate");
+		LocalDate timesheetdate=LocalDate.parse(timedate); 
+		String query="select * from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"'";
+		Connectionutil conutil=new Connectionutil();
+		Connection con=conutil.getDbConnection();
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery(query);
+		if(rs.next()){
+		%>
     <div class="box">
-    <button><a href="showtask.jsp">View Task</a></button><br><br>
-        <form method="post" action="timesheet">
-            <table>
-            <tr>
+    <form action="updatetimesheet" method="post">
+    <table>
+    <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>
-       <td><input type="date" min="" max="" name="timesheetdate" required></td>
+       <td><input type="date" min="" max="" name="timesheetdate" value="<%=rs.getDate(6).toLocalDate()%>" readonly required></td>
     </tr>
     <tr>
-       <th> <label for="taskname">Enter Task Name</label></th>
-        <td><input type="text" name="taskname" required></td>
-    </tr>
-     <tr>
        <th> <label for="spendinghrs">User Id</label></th>
-        <td><input type="number" name="userid" value="<%=uid %>"readonly></td>
+        <td><input type="number" name="userid" value="<%=rs.getInt(2)%>"readonly></td>
     </tr>
      <tr>
        <th> <label for="spendinghrs">Enter Spending Hrs</label></th>
-        <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" required></td>
+        <td><input type="number" pattern="[1-9]{1+}" maxlength="2" name="spendinghrs" value="<%=rs.getInt(4)%>" required></td>
     </tr>
     <tr>
        <th><label for="comments">Enter Comments</label></th>
-       <td><input type="text" name="comments" required></td>
+       <td><input type="text" name="comments" value="<%=rs.getString(5)%>" required></td>
     </tr>
     <tr>
        <th><label for="status" >Status</label></th>
@@ -114,9 +112,8 @@
     </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
-   &nbsp; &nbsp; <input type="reset"value="Reset">
-    </form>
-      <%!
+   <%} %>
+   <%!
 String flag;
 %>
 <%
@@ -125,7 +122,7 @@ flag = request.getAttribute("timesheet").toString();
 %>
 <h4><%= flag%></h4>
 <% }%>
-        
+    </form>  
     </div>
  
 </body>

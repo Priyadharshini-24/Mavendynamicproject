@@ -61,7 +61,6 @@ TIMESHEET_FOR_DATE DATE NOT NULL,
 TIMESHEET_UPDATE_DATE DATE DEFAULT SYSDATE NOT NULL,
 CONSTRAINT PK_TIMESHEETS PRIMARY KEY (TIMESHEET_ID)
 );
-select * from timesheets;
 select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id from timesheets ts 
 inner join user_details ud on ts.user_id=ud.user_id;
 --DROP TABLE TIMESHEETS;
@@ -81,7 +80,7 @@ CONSTRAINT PK_STATUS PRIMARY KEY(STATUS_ID)
 select * from status;
 select * from status where status='rejected';
 commit;
-
+select * from timesheets;
 select * from status inner join timesheets on status.timesheet_id=timesheets.timesheet_id where status='rejected';
 
 select td.task_name,s.timesheet_id,ts.timesheet_for_date,ts.spend_time_hrs,ts.comments,s.status,s.approved_by from status s 

@@ -43,6 +43,7 @@ public class UpdateTask extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String taskname=request.getParameter("taskname");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
 		String endingdate=request.getParameter("endingdate");
@@ -52,11 +53,17 @@ public class UpdateTask extends HttpServlet {
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		int id=userdao.findUserId(username);
-		Task task=new Task(id,null,assdate,enddate,priority,username);
+//		System.out.println(id);
+		Task task=new Task(id,taskname,assdate,enddate,priority,username);
+//		System.out.println(task);
 		boolean flag=taskdao.updateTask(task);
 		if(flag)
 		{
 			request.setAttribute("task","Task Updated Successfully");
+		}
+		else
+		{
+			request.setAttribute("task","Task not Updated ");
 		}
 		request.getRequestDispatcher("UpdateTask1.jsp").forward(request, response);
 //		RequestDispatcher reqdis=request.getRequestDispatcher("addtaskmain.jsp");
