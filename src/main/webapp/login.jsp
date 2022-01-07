@@ -6,7 +6,13 @@
 <meta charset="ISO-8859-1">
  <title>Login</title>
     <style>
+     *
+    {
+    margin:0px;
+    padding:0px;
+    }
         body
+        
         {
           background-size:cover;
         }
@@ -34,7 +40,7 @@
    
 </head>
 <body style="background-image:url(images/Time1.jpg)">
-  <form action="login" method="post">
+  <form action="log" method="post">
     <fieldset>
         <legend ><b>Login</b></legend>
         <lable for="username">User Name</lable><br>

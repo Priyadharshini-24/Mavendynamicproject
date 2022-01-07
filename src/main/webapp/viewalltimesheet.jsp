@@ -14,8 +14,10 @@
    List<ViewTimesheets> timesheetlist=new ArrayList<ViewTimesheets>();
    timesheetlist=viewtimesheetdao.showAllTimesheet();
 %>
+<h1><b> Timesheet Status</b></h1><br>
+<a href="timesheetadmin.jsp"><button>Add Status</button></a><br><br>
 <table border="1" id="allusers">
-	<h1><b> Timesheet List</b></h1>
+	
 	<thead>
 	<tr>
   		<th >S.no</th>
@@ -25,6 +27,8 @@
 		<th>Timesheet Id</th>
 		<th>Timesheet Date</th>
 		<th>Task Id</th>
+		<th>Status</th>
+		<th>Edit status</th>
 	</tr>
 	</thead>
 <tbody>
@@ -44,6 +48,8 @@ i++;
 <td> <%=viewtimesheet.getTimesheetid()%></td>
 <td> <%=viewtimesheet.getTimesheetdate()%></td>
 <td> <%=viewtimesheet.getTaskid()%></td>
+<td> <%=viewtimesheet.getStatus()%></td>
+<td><a href="updatestatus.jsp"><button>Edit</button></a></td>
 </tr>
 
 <%

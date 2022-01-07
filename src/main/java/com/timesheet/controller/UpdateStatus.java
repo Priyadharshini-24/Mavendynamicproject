@@ -6,36 +6,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("updatestatus")
-/**
- * Servlet implementation class UpdateStatus
- */
-public class UpdateStatus extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateStatus() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+import com.timesheet.daoimpl.StatusDAOimpl;
+import com.timesheet.model.Status;
+@WebServlet("/updateStatus")
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+public class Updatestatus extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    public Updatestatus() {
+        super(); 
+    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 //		doGet(request, response);
+		int timesheetid=Integer.parseInt(request.getParameter("timesheetid"));
+		String status=request.getParameter("status");
+		StatusDAOimpl statusdao=new StatusDAOimpl();
+		Status statusobj=new Status(0,timesheetid,status,null);
+		boolean flag=statusdao.updateStatus(statusobj);
+		if(flag)
+		{
+			request.setAttribute("status","status updated Successfully");
+		}
+		else
+		{
+			request.setAttribute("status","status not updated");
+		}
+		request.getRequestDispatcher("updatestatus1jsp.jsp").forward(request, response);
+		
+	}
 		
 	}
 
-}

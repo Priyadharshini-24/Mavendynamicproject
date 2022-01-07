@@ -1,3 +1,4 @@
+<%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
 <%@page import="java.sql.*"%>
 <%@page import="com.timesheet.util.Connectionutil"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -10,6 +11,11 @@
 <meta charset="ISO-8859-1">
  <title> Update Timesheet</title>
     <style>
+     *
+    {
+    margin:0px;
+    padding:0px;
+    }
         a
         {
             
@@ -66,7 +72,7 @@
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <br><br>
      <div class="sidebar"> 
@@ -79,8 +85,11 @@
     </div>
      <%DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String timedate=request.getParameter("timesheetdate");
-		LocalDate timesheetdate=LocalDate.parse(timedate); 
-		String query="select * from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"'";
+		LocalDate timesheetdate=LocalDate.parse(timedate);
+		String username=(String)session.getAttribute("username");
+		UserDAOimpl userdao=new UserDAOimpl();
+		int uid=userdao.findUserId(username);
+		String query="select * from timesheets where to_char(timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"' and user_id='"+uid+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		Statement stmt=con.createStatement();
@@ -88,7 +97,7 @@
 		if(rs.next()){
 		%>
     <div class="box">
-    <form action="updatetimesheet" method="post">
+    <form action="updateTime" method="POST">
     <table>
     <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>

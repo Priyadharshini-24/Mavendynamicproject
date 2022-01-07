@@ -9,6 +9,14 @@ public class ViewTimesheets {
  private LocalDate timesheetdate;
  private int taskid;
  private int timesheetid;
+ private String status;
+ 
+public String getStatus() {
+	return status;
+}
+public void setStatus(String status) {
+	this.status = status;
+}
 public int getTimesheetid() {
 	return timesheetid;
 }
@@ -47,7 +55,7 @@ public void setTaskid(int taskid) {
 }
 
 public ViewTimesheets(String username, String comments, int spendtimehrs, LocalDate timesheetdate, int taskid,
-		int timesheetid) {
+		int timesheetid,String status) {
 	super();
 	this.username = username;
 	this.comments = comments;
@@ -55,6 +63,7 @@ public ViewTimesheets(String username, String comments, int spendtimehrs, LocalD
 	this.timesheetdate = timesheetdate;
 	this.taskid = taskid;
 	this.timesheetid = timesheetid;
+	this.status=status;
 }
 public ViewTimesheets() {
 	super();
@@ -63,8 +72,10 @@ public ViewTimesheets() {
 @Override
 public String toString() {
 	return "ViewTimesheets [username=" + username + ", comments=" + comments + ", spendtimehrs=" + spendtimehrs
-			+ ", timesheetdate=" + timesheetdate + ", taskid=" + taskid + ", timesheetid=" + timesheetid + "]";
+			+ ", timesheetdate=" + timesheetdate + ", taskid=" + taskid + ", timesheetid=" + timesheetid + ", status="
+			+ status + "]";
 }
+
 
 
 }

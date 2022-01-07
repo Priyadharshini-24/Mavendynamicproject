@@ -6,6 +6,11 @@
 <meta charset="ISO-8859-1">
 <title>Home</title>
     <style>
+    *
+    {
+    margin:0px;
+    padding:0px;
+    }
         a
         {
             
@@ -62,7 +67,7 @@
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <%String username=(String)session.getAttribute("username");
     if(username!=null)

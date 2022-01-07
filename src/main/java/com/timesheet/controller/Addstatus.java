@@ -62,6 +62,10 @@ public class Addstatus extends HttpServlet {
 		{
 			request.setAttribute("status","status Added Successfully");
 		}
+		else
+		{
+			request.setAttribute("status","status not Added");
+		}
 		request.getRequestDispatcher("timesheetadmin.jsp").forward(request, response);
 		
 	}

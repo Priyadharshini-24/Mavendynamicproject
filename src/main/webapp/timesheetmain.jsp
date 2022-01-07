@@ -1,3 +1,9 @@
+
+<%@page import="java.sql.*"%>
+<%@page import="com.timesheet.util.Connectionutil"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="com.timesheet.model.Task"%>
+<%@page import="java.util.*"%>
 <%@page import="com.timesheet.daoimpl.TaskDAOimpl"%>
 <%@page import="com.timesheet.model.User"%>
 <%@page import="com.timesheet.daoimpl.UserDAOimpl"%>
@@ -9,6 +15,11 @@
 <meta charset="ISO-8859-1">
  <title>Timesheet</title>
     <style>
+     *
+    {
+    margin:0px;
+    padding:0px;
+    }
         a
         {
             
@@ -61,8 +72,22 @@
    User user=new User();
    String username=(String)session.getAttribute("username");
    int uid=userdao.findUserId(username);
-   TaskDAOimpl taskdao=new TaskDAOimpl();
-   taskdao.showTask(username);
+  // TaskDAOimpl taskdao=new TaskDAOimpl();
+   //List<Task> taskList = new ArrayList<Task>();
+   //taskList = taskdao.showTask(username);
+   String query="select to_char(sysdate,'yyyy-MM-dd') from dual";
+   Connection con=Connectionutil.getDbConnection();
+   Statement st=con.createStatement();
+   ResultSet rs=st.executeQuery(query);
+   String Date=null;
+   if(rs.next())
+   {
+	 Date=rs.getString(1);  
+	 System.out.println(Date);
+   }
+   String name=(String)request.getParameter("taskName");
+   String date=(String)request.getParameter("taskDate");
+	 System.out.println("sys"+date);
    
 %>
     <h1 align="center">TRACK YOUR TIME</h1>
@@ -73,28 +98,30 @@
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
         <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+        <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <br><br>
      <div class="sidebar"> 
         <ul>
-        <li><a href="timesheetmain.jsp">Add Timesheet</a><br><br></li>
+        <li><a href="showtask.jsp">Add Timesheet</a><br><br></li>
         <li><a href="Updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
         <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
-        <li><a href="viewtimesheet.jsp">Timesheet status</a><br><br></li>
+        <li><a href="showuserstatus1.jsp">Timesheet status</a><br><br></li>
+        <li><a href="viewtimesheet.jsp">View Timesheet</a><br><br></li>
         </ul>
     </div>
     <div class="box">
-    <button><a href="showtask.jsp">View Task</a></button><br><br>
+
+ 
         <form method="post" action="timesheet">
             <table>
             <tr>
        <th><label for="timesheetdate">Enter Timesheet Date</label></th>
-       <td><input type="date" min="" max="" name="timesheetdate" required></td>
+       <td><input type="date" min="<%=date%>" max="<%=Date%>" name="timesheetdate" required></td>
     </tr>
     <tr>
        <th> <label for="taskname">Enter Task Name</label></th>
-        <td><input type="text" name="taskname" required></td>
+        <td><input type="text" name="taskname" value="<%=name%>" readonly required></td>
     </tr>
      <tr>
        <th> <label for="spendinghrs">User Id</label></th>
@@ -113,9 +140,15 @@
        <td><input type="text" name="status" placeholder="not approved" readonly></td>
     </tr>
     </table><br><br>
+
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
    &nbsp; &nbsp; <input type="reset"value="Reset">
     </form>
+    <script type="text/javascript">
+    function name() {
+		
+	}
+    </script>
       <%!
 String flag;
 %>

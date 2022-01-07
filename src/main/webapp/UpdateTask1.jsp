@@ -8,6 +8,11 @@
 <meta charset="ISO-8859-1">
 <title>Update Task</title>
 <style>
+ *
+    {
+    margin:0px;
+    padding:0px;
+    }
         a
         {
             
@@ -85,7 +90,7 @@ ResultSet rs=stmt.executeQuery(query);
 if(rs.next()){
 %>
     <div class="box">
-        <form method="post" action="updatetask">
+        <form method="post" action="UpdateTask">
             <table>
             <tr>
        <th><label for="taskname">Enter Task Name</label></th>

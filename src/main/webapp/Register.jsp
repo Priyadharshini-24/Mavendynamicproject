@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>SignUp</title>
     <style>
+   
         body
         {
           background-size:cover;

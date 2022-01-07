@@ -22,6 +22,7 @@ DELETE USER_DETAILS WHERE user_id=2;
 
 SELECT * FROM USER_DETAILS order by user_id;
 
+select * from user_details;
 
 CREATE TABLE TASK_DETAILS(
 TASK_ID NUMBER GENERATED ALWAYS AS IDENTITY(START WITH 1 INCREMENT BY 1),
@@ -104,9 +105,11 @@ inner join status s on ts.timesheet_id=s.timesheet_id where ts.timesheet_for_dat
 
 commit;
 --drop table status;
-
+delete from timesheets where timesheet_id=44;
+commit;
 select * from task_details;
 delete from status where status_id=5;
+select * from timesheets;
 
 DESC USER_DETAILS;
 DESC task_details;
@@ -114,3 +117,20 @@ DESC TIMESHEETS;
 DESC STATUS;
 
 COMMIT; 
+
+select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,s.status from timesheets ts 
+inner join user_details ud on ts.user_id=ud.user_id 
+left join status s on s.user_id=ud.user_id;
+
+select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Approved')as status from status s 
+right join timesheets ts on s.timesheet_id=ts.timesheet_id 
+inner join user_details ud on ud.user_id=ts.user_id;
+select * from timesheets;
+select * from status;
+
+select ts.timesheet_for_date,ts.spend_time_hrs,NVL(s.status,'Not Approved')as status from status s right join timesheets ts on s.timesheet_id=ts.timesheet_id 
+inner join user_details ud on ud.user_id=ts.user_id 
+where user_name='vishaliravi@gmail.com' and timesheet_for_date between '20-12-2021' and '22-12-2021';
+
+select sysdate from dual;
+

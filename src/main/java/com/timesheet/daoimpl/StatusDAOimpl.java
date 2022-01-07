@@ -42,16 +42,14 @@ public class StatusDAOimpl implements StatusDAO
 	 public boolean updateStatus(Status status)
 	 {
 		 boolean flag=false;
-		 String updatequery="update status set user_id=?,status=?,approved_by=? where timesheet_id=?";
+		 String updatequery="update status set status=? where timesheet_id=?";
 		 Connection con=Connectionutil.getDbConnection();
 			PreparedStatement pstmt=null;
 			try
 			{
 				pstmt=con.prepareStatement(updatequery);
-				pstmt.setInt(1,status.getUserid());
-				pstmt.setString(2,status.getStatus());
-				pstmt.setString(3,status.getApprovedby());
-				pstmt.setInt(4,status.getTimesheetid());
+				pstmt.setString(1,status.getStatus());
+				pstmt.setInt(2,status.getTimesheetid());
 				if(pstmt.executeUpdate()>0)
 				{
 					flag=true;

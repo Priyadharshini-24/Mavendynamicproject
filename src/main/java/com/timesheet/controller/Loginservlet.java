@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.User;
-@WebServlet("/login")
+@WebServlet("/log")
 
 /**
  * Servlet implementation class Loginservlet
