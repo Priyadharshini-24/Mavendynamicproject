@@ -93,33 +93,7 @@ public class UserDAOimpl implements UserDAO
 	}
 	
 
-	public List<User> showalluser()
-	{
-		List<User> userlist=new ArrayList<User>();
-		String selectquery="select * from user_details where role='TEAM MEMBER'";
-		Connectionutil conutil=new Connectionutil();
-		Connection con=conutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		try
-		{
-			pstmt=con.prepareStatement(selectquery);	
-			rs=pstmt.executeQuery();
-		while(rs.next())
-		{
-			User user=new User(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
-			userlist.add(user);
-		}
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			System.out.println("somthing went wrong");
-		}
-		
-		return userlist;
-		
-	}
+	
 	public List<User> showuser(String username)
 	{
 		List<User> userlist=new ArrayList<User>();
@@ -147,32 +121,7 @@ public class UserDAOimpl implements UserDAO
 		return userlist;
 		
 	}
-	public boolean removeUser(String username,String role)
-	{
-		boolean flag=false;
-		String removequery="update user_details set role=? where user_name='"+username+"'";
-		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
-		try
-		{
-			pstmt=con.prepareStatement(removequery);
-			pstmt.setString(1,role);
-			pstmt.setString(1,username);
-			if(pstmt.executeUpdate()>0)
-			{
-				flag=true;
-			}
-//			int i=pstmt.executeUpdate();
-//			System.out.println(i+" User details Remove ");
-			
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			System.out.println("something went wrong");
-		}
-		return flag;
-	}
+	
 	public int findUserId(String username)
 	{
 		String findUser="select user_id from user_details where user_name= '"+username+"'";

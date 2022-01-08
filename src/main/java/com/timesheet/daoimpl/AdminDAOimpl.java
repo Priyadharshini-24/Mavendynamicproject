@@ -1,10 +1,14 @@
 package com.timesheet.daoimpl;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.timesheet.dao.AdminDAO;
+import com.timesheet.model.AdminUser;
 import com.timesheet.model.User;
 import com.timesheet.util.Connectionutil;
 
@@ -32,6 +36,59 @@ public class AdminDAOimpl implements AdminDAO
 		
 	return user;
 		
+	}
+	public List<AdminUser> showalluser()
+	{
+		List<AdminUser> userlist=new ArrayList<AdminUser>();
+		String selectquery="select * from user_details where role not in('ADMIN')";
+		Connectionutil conutil=new Connectionutil();
+		Connection con=conutil.getDbConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try
+		{
+			pstmt=con.prepareStatement(selectquery);	
+			rs=pstmt.executeQuery();
+		while(rs.next())
+		{
+			AdminUser user=new AdminUser(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));
+			userlist.add(user);
+		}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("somthing went wrong");
+		}
+		
+		return userlist;
+		
+	}
+	public boolean removeUser(String username,String role)
+	{
+		boolean flag=false;
+		String removequery="update user_details set role=? where user_name='"+username+"'";
+		Connection con=Connectionutil.getDbConnection();
+		PreparedStatement pstmt=null;
+		try
+		{
+			pstmt=con.prepareStatement(removequery);
+			pstmt.setString(1,role);
+			pstmt.setString(2,username);
+			if(pstmt.executeUpdate()>0)
+			{
+				flag=true;
+			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" User details Remove ");
+			
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("something went wrong");
+		}
+		return flag;
 	}
 	}
 	

@@ -74,6 +74,32 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		}
 		return flag;
 	}
+	public boolean checkDate(int userid,LocalDate timesheetdate)
+	{
+		String query="select * from timesheets where user_id='"+userid+"' and to_char(Timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"'";
+		Connection con=Connectionutil.getDbConnection();
+		boolean flag=true;
+		Statement st;
+		try
+		{
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next())
+			{
+				Timesheet timesheet=new Timesheet(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getDate(6).toLocalDate());
+//				System.out.println(timesheet);
+			}
+			else
+			{
+				flag=false; 
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public List<Timesheet> showTimesheet(int userid)
 	{
 		List<Timesheet> timesheetlist=new ArrayList<Timesheet>();

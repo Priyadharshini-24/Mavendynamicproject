@@ -42,15 +42,31 @@ public class Timesheetservlet extends HttpServlet {
 		int spendinghrs=Integer.parseInt(request.getParameter("spendinghrs"));
 		String comments=request.getParameter("comments");
 		Timesheet timesheet=new Timesheet(id,id1,spendinghrs,comments,timesheetdate);
+		boolean flag1 =timesheetdao.checkDate(id, timesheetdate);
+		if(flag1==false)
+		{
+		
 		boolean flag=timesheetdao.insertTimesheet(timesheet);
 		if(flag)
 		{
 //			int taskid=taskdao.findtaskId(taskname);
 //			request.setAttribute("taskid", taskid);
 			request.setAttribute("timesheet","Timesheet Added Successfully");
+			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
 //			request.setAttribute("taskname",taskname);
 		}
-		request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
+		else
+		{
+			request.setAttribute("timesheet","Timesheet not Added");
+			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
+		}
+		
 	}
-
+		else
+		{
+			request.setAttribute("timesheet", "Timesheet already Exist");
+			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
+//		 	System.out.println("not available");
+		}
+	}
 }

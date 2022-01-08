@@ -105,11 +105,12 @@ inner join status s on ts.timesheet_id=s.timesheet_id where ts.timesheet_for_dat
 
 commit;
 --drop table status;
-delete from timesheets where timesheet_id=44;
+delete from timesheets where timesheet_id=83;
 commit;
 select * from task_details;
 delete from status where status_id=5;
 select * from timesheets;
+select * from task_details;
 
 DESC USER_DETAILS;
 DESC task_details;
@@ -133,4 +134,7 @@ inner join user_details ud on ud.user_id=ts.user_id
 where user_name='vishaliravi@gmail.com' and timesheet_for_date between '20-12-2021' and '22-12-2021';
 
 select sysdate from dual;
+select * from timesheets;
 
+
+select * from user_details where role not in('ADMIN');
