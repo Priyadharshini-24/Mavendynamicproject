@@ -53,7 +53,7 @@ i++;
 <td><%=viewUser.getLastname()%></td>
 <td> <%=viewUser.getUsername()%></td>
 <td><%=viewUser.getPassword()%></td>
-<td><a href="updateUser.jsp?firstname=<%=viewUser.getFirstname()%>&lastname=<%=viewUser.getLastname()%>&password=<%=viewUser.getPassword()%>"><button>Edit</button></a></td>
+<td><a href="updateUser.jsp?firstname=<%=viewUser.getFirstname()%>&lastname=<%=viewUser.getLastname()%>&username=<%=viewUser.getUsername()%>&password=<%=viewUser.getPassword()%>"><button>Edit</button></a></td>
 </tr>
 
 <%
@@ -61,5 +61,15 @@ i++;
 %>
 </tbody>
 </table>
+ <%!
+String flag;
+%>
+<%
+if(request.getAttribute("updateuser") != null){
+flag = request.getAttribute("updateuser").toString();
+%>
+<h4><%= flag%></h4>
+<% }%>
+<%session.removeAttribute("updateuser");%> 
 </body>
 </html>

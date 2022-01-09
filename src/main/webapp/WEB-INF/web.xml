@@ -15,6 +15,13 @@
 		<servlet-name>UpdateUser</servlet-name>
 		<servlet-class>com.timesheet.controller.UpdateUser</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AddTaskAllUsers</display-name>
+		<servlet-name>AddTaskAllUsers</servlet-name>
+		<servlet-class>com.timesheet.controller.AddTaskAllUsers</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UpdateUserAdmin</servlet-name>
 		<url-pattern>/UpdateUserAdmin</url-pattern>
@@ -22,6 +29,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateUser</servlet-name>
 		<url-pattern>/UpdateUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddTaskAllUsers</servlet-name>
+		<url-pattern>/AddTaskAllUsers</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -64,6 +64,33 @@ public class AdminDAOimpl implements AdminDAO
 		return userlist;
 		
 	}
+	public List<AdminUser> showusers()
+	{
+		List<AdminUser> userlist=new ArrayList<AdminUser>();
+		String selectquery="select * from user_details where role not in('ADMIN','IN ACTIVE')";
+		Connectionutil conutil=new Connectionutil();
+		Connection con=conutil.getDbConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try
+		{
+			pstmt=con.prepareStatement(selectquery);	
+			rs=pstmt.executeQuery();
+		while(rs.next())
+		{
+			AdminUser user=new AdminUser(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));
+			userlist.add(user);
+		}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			System.out.println("somthing went wrong");
+		}
+		
+		return userlist;
+		
+	}
 	public boolean removeUser(String username,String role)
 	{
 		boolean flag=false;

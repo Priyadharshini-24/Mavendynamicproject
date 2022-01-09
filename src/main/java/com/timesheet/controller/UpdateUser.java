@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.timesheet.daoimpl.UserDAOimpl;
 import com.timesheet.model.User;
-@WebServlet("updateuser")
+@WebServlet("/updateuser")
 
 public class UpdateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,7 +45,7 @@ public class UpdateUser extends HttpServlet {
 		{
 			request.setAttribute("updateuser","User Details not Updated ");
 		}
-		request.getRequestDispatcher("updateUser.jsp").forward(request, response);
+		request.getRequestDispatcher("showuser.jsp").forward(request, response);
 	}
 
 }

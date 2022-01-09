@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Task</title>
-    <style>
+<title>Add Task to All Users</title>
+<style>
      *
     {
     margin:0px;
@@ -78,8 +78,7 @@
         </ul>
     </div>
     <div class="box">
-    <a href="addtaskalluser.jsp"><button>To All Users</button></a><br><br>
-        <form method="post" action="addtask">
+        <form  action="addtaskalluser" method="post">
             <table>
              <tr>
        <th><label for="taskname">Enter Task Name</label></th>
@@ -102,10 +101,6 @@
        </select>
        </td>
     </tr>
-     <tr>
-       <th><label for="assignedto">Task Assigned To</label></th>
-       <td><input type="email" name="username" required></td>
-    </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
    &nbsp; &nbsp; <input type="reset"value="Clear">
@@ -120,5 +115,6 @@ flag = request.getAttribute("task").toString();
 <h4><%= flag%></h4>
 <% }%> 
     </div>
+
 </body>
 </html>
