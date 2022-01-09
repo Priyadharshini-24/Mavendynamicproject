@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.model.User;
 @WebServlet("updateuser")
 
 public class UpdateUser extends HttpServlet {
@@ -27,6 +30,22 @@ public class UpdateUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
+		String firstname=request.getParameter("firstname");
+		String lastname=request.getParameter("lastname");
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		UserDAOimpl userdao=new UserDAOimpl();
+		User user=new User(firstname,lastname,username,password);
+		boolean flag=userdao.updateUser(user);
+		if(flag)
+		{
+			request.setAttribute("updateuser","User Details Updated Successfully");
+		}
+		else
+		{
+			request.setAttribute("updateuser","User Details not Updated ");
+		}
+		request.getRequestDispatcher("updateUser.jsp").forward(request, response);
 	}
 
 }

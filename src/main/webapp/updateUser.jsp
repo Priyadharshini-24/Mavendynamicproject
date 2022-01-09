@@ -37,5 +37,14 @@
             <input type="password" id="Confirm_password" name="Confirm_password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Enter confirm password same as password " required><br><br>
             &nbsp;&nbsp;<button type="submit" onclick="myfunction()">Submit</button>&nbsp; &nbsp;
             </form>
+            <%!
+String flag;
+%>
+<%
+if(request.getAttribute("updateuser") != null){
+flag = request.getAttribute("updateuser").toString();
+%>
+<h4><%= flag%></h4>
+<% }%> 
 </body>
 </html>
