@@ -67,7 +67,7 @@ public class AdminDAOimpl implements AdminDAO
 	public boolean removeUser(String username,String role)
 	{
 		boolean flag=false;
-		String removequery="update user_details set role=? where user_name='"+username+"'";
+		String removequery="update user_details set role=? where user_name=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		try

@@ -117,7 +117,7 @@ i++;
 <td><%=viewUser.getLastname()%></td>
 <td> <%=viewUser.getUsername()%></td>
 <td><%=viewUser.getRole() %></td>
-<td><button>Edit</button></td>
+<td><a href="updateUserAdmin.jsp?username=<%=viewUser.getUsername()%>"><button>Edit</button></a></td>
 </tr>
 
 <%

@@ -90,7 +90,7 @@
             <table>
             <tr>
        <th><label for="timesheetid">Enter Timesheet Id</label></th>
-       <td><input type="number" name="timesheetid" value="<%=rs.getInt(3)%>" required></td>
+       <td><input type="number" name="timesheetid" value="<%=rs.getInt(3)%>" readonly required></td>
     </tr>
     <tr>
        <th><label for="userid">User Id</label></th>
@@ -98,7 +98,11 @@
     </tr>
     <tr>
        <th><label for="status">Enter Status</label></th>
-       <td><input type="text" name="status" value="<%=rs.getString(4)%>" required></td>
+       <td><select name="status" required>
+       <option>Approved</option>
+       <option>Rejected</option>
+       <option>Not Approved</option>
+       </select></td>
     </tr>
     <tr>
        <th><label for="approvedby">Approvedb By</label></th>

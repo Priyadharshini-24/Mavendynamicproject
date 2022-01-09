@@ -18,7 +18,7 @@ DESC USER_DETAILS;
 INSERT INTO USER_DETAILS(FIRST_NAME,LAST_NAME,USER_NAME,PASSWORD,ROLE)VALUES('DHARSHAN','RAVI','dharshanravi@gmail.com','Dharshan03@','ADMIN');
 INSERT INTO USER_DETAILS(FIRST_NAME,LAST_NAME,USER_NAME,PASSWORD,ROLE)VALUES('PRIYA','RAVI','priyaravi@gmail.com','Priya24#','ADMIN');
 
-DELETE USER_DETAILS WHERE user_id=2;
+--DELETE USER_DETAILS WHERE user_id=2;
 
 SELECT * FROM USER_DETAILS order by user_id;
 
@@ -123,13 +123,15 @@ select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date
 inner join user_details ud on ts.user_id=ud.user_id 
 left join status s on s.user_id=ud.user_id;
 
-select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Approved')as status from status s 
+select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Approved')as status
+from status s 
 right join timesheets ts on s.timesheet_id=ts.timesheet_id 
 inner join user_details ud on ud.user_id=ts.user_id;
 select * from timesheets;
 select * from status;
 
-select ts.timesheet_for_date,ts.spend_time_hrs,NVL(s.status,'Not Approved')as status from status s right join timesheets ts on s.timesheet_id=ts.timesheet_id 
+select ts.timesheet_for_date,ts.spend_time_hrs,NVL(s.status,'Not Approved')as status from status s 
+right join timesheets ts on s.timesheet_id=ts.timesheet_id 
 inner join user_details ud on ud.user_id=ts.user_id 
 where user_name='vishaliravi@gmail.com' and timesheet_for_date between '20-12-2021' and '22-12-2021';
 

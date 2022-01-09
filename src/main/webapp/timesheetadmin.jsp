@@ -68,7 +68,11 @@ i++;
   </tr>
   <tr>
  <th><label for="status">Enter Status</label></th>
-  <td><input type="text" name="status" required></td>
+  <td><select name="status" required>
+       <option>Approved</option>
+       <option>Rejected</option>
+       <option>Not Approved</option>
+       </select></td>
   </tr>
   <tr>
  <th><label for="approvedby">Approved By</label></th>

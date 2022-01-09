@@ -49,7 +49,7 @@ i++;
 <td> <%=viewtimesheet.getTimesheetdate()%></td>
 <td> <%=viewtimesheet.getTaskid()%></td>
 <td> <%=viewtimesheet.getStatus()%></td>
-<td><a href="updatestatus.jsp"><button>Edit</button></a></td>
+<td><a href="updatestatus.jsp?timesheetid=<%=viewtimesheet.getTimesheetid()%>"><button>Edit</button></a></td>
 </tr>
 
 <%

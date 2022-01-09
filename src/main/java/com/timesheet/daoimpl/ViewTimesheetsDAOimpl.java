@@ -16,7 +16,7 @@ public class ViewTimesheetsDAOimpl implements ViewTimesheetsDAO {
 	public List<ViewTimesheets> showAllTimesheet()
 	{
 		List<ViewTimesheets> timesheetlist=new ArrayList<ViewTimesheets>();
-		String selectquery="select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Approved')as status from status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id	";
+		String selectquery="select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Yet Approved')as status from status s right join timesheets ts on s.timesheet_id=ts.timesheet_id inner join user_details ud on ud.user_id=ts.user_id	";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;

@@ -33,6 +33,8 @@
 		<th>First Name</th>
 		<th>Last Name</th>
 		<th>User Name</th>
+		<th>Password</th>
+		<th>Edit</th>
 	</tr>
 	</thead>
 	<br><br>
@@ -50,6 +52,8 @@ i++;
 <td><%=viewUser.getFirstname()%></td>
 <td><%=viewUser.getLastname()%></td>
 <td> <%=viewUser.getUsername()%></td>
+<td><%=viewUser.getPassword()%></td>
+<td><a href="updateUser.jsp?firstname=<%=viewUser.getFirstname()%>&lastname=<%=viewUser.getLastname()%>&password=<%=viewUser.getPassword()%>"><button>Edit</button></a></td>
 </tr>
 
 <%
@@ -57,7 +61,5 @@ i++;
 %>
 </tbody>
 </table>
-
-
 </body>
 </html>
