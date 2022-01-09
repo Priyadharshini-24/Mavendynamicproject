@@ -123,7 +123,7 @@ select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date
 inner join user_details ud on ts.user_id=ud.user_id 
 left join status s on s.user_id=ud.user_id;
 
-select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Approved')as status
+select distinct ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id,NVL(s.status,'Not Approved')as status
 from status s 
 right join timesheets ts on s.timesheet_id=ts.timesheet_id 
 inner join user_details ud on ud.user_id=ts.user_id;
@@ -137,6 +137,7 @@ where user_name='vishaliravi@gmail.com' and timesheet_for_date between '20-12-20
 
 select sysdate from dual;
 select * from timesheets;
+select * from user_details;
+select * from task_details;
 
-
-select * from user_details where role not in('ADMIN');
+select * from user_details where role not in('ADMIN','IN ACTIVE');

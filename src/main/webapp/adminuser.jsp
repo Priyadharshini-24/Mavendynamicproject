@@ -62,7 +62,7 @@
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
-        <a href="#index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
         <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
@@ -76,7 +76,6 @@
     %>
     <h3>login as :<%=username %></h3>
     <%} %>
-    <br><br>
      <div class="sidebar"> 
         <ul>
         <li><a href="showalluser.jsp">View Users</a><br><br></li>
