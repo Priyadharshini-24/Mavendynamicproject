@@ -12,6 +12,7 @@ CONSTRAINT PK_USER_DETAILS PRIMARY KEY (USER_ID));
 
 DESC USER_DETAILS;
 
+
 --DROP TABLE USER_DETAILS cascade constraints;
 --DROP TABLE USER_DETAILS;
 
@@ -40,11 +41,28 @@ alter table task_details add total_working_hrs number not null;
 
 SELECT * FROM USER_DETAILS order by user_id;
 select * from task_details;
+commit;
 --delete from task_details where task_id=66;
+--delete from timesheets where timesheet_id=84;
 DESC TASK_DETAILS;
-select  sysdate - to_date('2021-12-31', 'yyyy-mm-dd') from dual;
+select  floor(sysdate - to_date('2021-12-31', 'yyyy-mm-dd'))as no_of_days from dual;
 
---select (to_date(assigned_to_date,'dd')-to_date(end_date,'dd'))as noofdays from task_details where task_id=43;
+select floor((end_date) - to_date(sysdate))as no_of_days from task_details where task_id=43;
+
+select total_hours from task_details where task_name='Timesheet-Ui design' and assigned_to='vishaliravi@gmail.com';
+
+select * from timesheets;
+select * from task_details;
+commit;
+update task_details set total_hours=64 where task_name='Java Training';
+create table demo(Ass_date date ,end_date date
+,no_of_days number);
+insert into demo (Ass_date,end_date,no_of_days) values('31-12-21','06-01-22',(select floor((end_date) - to_date(Ass_date))as no_of_days from demo ));
+select floor(('06-01-22') - to_date('31-12-21'))as no_of_days from dual;
+alter table task_details  add total_hours number ;
+select * from demo;
+
+select (to_date(assigned_to_date,'dd')-to_date(end_date,'dd'))as noofdays from task_details where task_id=43;
 
 --select extract(day from sysdate - to_date('2009-10-01', 'yyyy-mm-dd')) from dual;
 

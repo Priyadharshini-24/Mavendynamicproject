@@ -61,7 +61,6 @@
 %>
  <h1 class="h1" align="center">TRACK YOUR TIME</h1>
     <nav>
-        
         <a href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
         <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
         <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
@@ -90,6 +89,7 @@
 		<th>Task Starting Date</th>
 		<th>Task Ending Date</th>
 		<th>Assigned To</th>
+		<th>Total Hrs</th>
 		<th>Add Timesheet</th>
 	</tr>
 	</thead>
@@ -110,6 +110,7 @@ i++;
 <td> <%=viewtask.getDateassigned()%></td>
 <td> <%=viewtask.getEnddate()%></td>
 <td> <%=viewtask.getAssignedto()%></td>
+<td><%=viewtask.getTotalhrs()%></td>
 <td><a href="timesheetmain.jsp?taskName=<%=viewtask.getTask()%>&taskDate=<%=viewtask.getDateassigned() %>" ><button>ADD</button></a></td>
 </tr>
 

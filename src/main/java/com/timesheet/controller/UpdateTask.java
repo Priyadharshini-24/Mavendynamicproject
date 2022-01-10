@@ -1,8 +1,10 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,24 +28,34 @@ public class UpdateTask extends HttpServlet {
 		LocalDate assdate=LocalDate.parse(assigningdate);
 		String endingdate=request.getParameter("endingdate");
 		LocalDate enddate=LocalDate.parse(endingdate);
+		long totalhrs = ChronoUnit.DAYS.between(assdate,enddate)*8;
 		String priority=request.getParameter("priority");
 		String username=request.getParameter("username");
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
 		int id=userdao.findUserId(username);
 //		System.out.println(id);
-		Task task=new Task(id,taskname,assdate,enddate,priority,username);
+		Task task=new Task(id,taskname,assdate,enddate,priority,username,totalhrs);
 //		System.out.println(task);
 		boolean flag=taskdao.updateTask(task);
+		PrintWriter out=response.getWriter();
 		if(flag)
 		{
-			request.setAttribute("task","Task Updated Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Task Updated Successfully');");
+			out.println("location='updatetask.jsp';");
+			out.println("</script>");
+			//request.setAttribute("task","Task Updated Successfully");
 		}
 		else
 		{
-			request.setAttribute("task","Task not Updated ");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Task Not Updated');");
+			out.println("location='updatetask.jsp';");
+			out.println("</script>");
+			//request.setAttribute("task","Task not Updated ");
 		}
-		request.getRequestDispatcher("UpdateTask1.jsp").forward(request, response);
+		//request.getRequestDispatcher("UpdateTask1.jsp").forward(request, response);
 //		RequestDispatcher reqdis=request.getRequestDispatcher("addtaskmain.jsp");
 //		reqdis.forward(request, response);
 //		out.println("task successfully added");

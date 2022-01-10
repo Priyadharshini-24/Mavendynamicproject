@@ -15,7 +15,7 @@ public class TaskDAOimpl implements TaskDAO
 	public boolean insertTask(Task task)
 	{
 		boolean flag=false;
-		String insertquery="insert into task_details(user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to)values(?,?,?,?,?,?)";
+		String insertquery="insert into task_details(user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours)values(?,?,?,?,?,?,?)";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -28,7 +28,7 @@ public class TaskDAOimpl implements TaskDAO
 			pstmt.setDate(4,java.sql.Date.valueOf(task.getEnddate()));
 			pstmt.setString(5,task.getTaskpriority());
 			pstmt.setString(6,task.getAssignedto());
-			
+			pstmt.setLong(7,task.getTotalhrs());
 			if(pstmt.executeUpdate()>0)
 			{
 				flag=true;
@@ -45,7 +45,7 @@ public class TaskDAOimpl implements TaskDAO
 	public boolean updateTask(Task task)
 	{
 		boolean flag=false;
-		String updatequery="update task_details set user_id=?,assigned_to_date=?,end_date=?,task_priority=?,assigned_to=? where task_name=?";
+		String updatequery="update task_details set user_id=?,assigned_to_date=?,end_date=?,task_priority=?,assigned_to=?,total_hours=? where task_name=?";
 		Connection con=Connectionutil.getDbConnection();
 		PreparedStatement pstmt=null;
 		try
@@ -56,7 +56,8 @@ public class TaskDAOimpl implements TaskDAO
 			pstmt.setDate(3,java.sql.Date.valueOf(task.getEnddate()));
 			pstmt.setString(4,task.getTaskpriority());
 			pstmt.setString(5,task.getAssignedto());
-			pstmt.setString(6, task.getTask());
+			pstmt.setString(7, task.getTask());
+			pstmt.setLong(6,task.getTotalhrs());
 			if(pstmt.executeUpdate()>0)
 			{
 				flag=true;
@@ -85,7 +86,7 @@ public class TaskDAOimpl implements TaskDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7));
+			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7),rs.getLong(9));
 			tasklist.add(task);
 		}
 		}
@@ -112,7 +113,7 @@ public class TaskDAOimpl implements TaskDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7));
+			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7),rs.getLong(9));
 			tasklist.add(task);
 		}
 		}
@@ -145,29 +146,95 @@ public class TaskDAOimpl implements TaskDAO
 		return taskId;
 		
 	}
-	public boolean removeTask(String task)
+	public boolean validateTask(String taskname,String username)
 	{
-		boolean flag=false;
-		String removequery="delete from task_details where task_name=?";
+		String query="select * from task_details where Assigned_to='"+username+"' and task_name='"+taskname+"'";
 		Connection con=Connectionutil.getDbConnection();
-		PreparedStatement pstmt=null;
+		boolean flag=true;
+		Statement st;
 		try
 		{
-			pstmt=con.prepareStatement(removequery);
-			pstmt.setString(1,task);
-			if(pstmt.executeUpdate()>0)
+			st=con.createStatement();
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next())
 			{
-				flag=true;
+			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7),rs.getLong(9));	
 			}
-//			int i=pstmt.executeUpdate();
-//			System.out.println(i+" Task Remove successfully");
-			
+			else
+			{
+				flag=false;
+			}
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			System.out.println("Task not Removed");
 		}
 		return flag;
+		
 	}
+	public boolean getTotalhrs(String username,String taskname)
+	{
+	 Connection con=Connectionutil.getDbConnection();	
+	 String query="select total_hours from task_details where task_name=? and assigned_to=?";
+	 boolean flag=true;
+	 PreparedStatement pstmt;
+	 try {
+		pstmt=con.prepareStatement(query);
+		pstmt.setString(1,taskname);
+		pstmt.setString(2,username);
+		ResultSet rs=pstmt.executeQuery();
+		if(rs.next())
+		{
+		  rs.getInt(1);
+		}
+		else
+		{
+			flag=false;
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+		return flag;
+		
+	}
+	
+	
+//	public boolean updatehrs(int totalhrs,String username,String taskname)
+//	{
+//		Connection con=Connectionutil.getDbConnection();
+//		String query="update task_details set total_hours =? where task_name=? and assigned_to=?";
+//		PreparedStatement pstmt;
+//		
+//		boolean flag=true;
+//		return flag;
+//		
+//	}
+	
+	
+	
+//	public boolean removeTask(String task)
+//	{
+//		boolean flag=false;
+//		String removequery="delete from task_details where task_name=?";
+//		Connection con=Connectionutil.getDbConnection();
+//		PreparedStatement pstmt=null;
+//		try
+//		{
+//			pstmt=con.prepareStatement(removequery);
+//			pstmt.setString(1,task);
+//			if(pstmt.executeUpdate()>0)
+//			{
+//				flag=true;
+//			}
+//			int i=pstmt.executeUpdate();
+//			System.out.println(i+" Task Remove successfully");
+//			
+//		}
+//		catch(SQLException e)
+//		{
+//			e.printStackTrace();
+//			System.out.println("Task not Removed");
+//		}
+//		return flag;
+//	}
 }

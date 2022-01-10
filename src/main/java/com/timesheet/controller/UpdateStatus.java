@@ -1,6 +1,8 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,15 +27,24 @@ public class Updatestatus extends HttpServlet {
 		StatusDAOimpl statusdao=new StatusDAOimpl();
 		Status statusobj=new Status(0,timesheetid,status,null);
 		boolean flag=statusdao.updateStatus(statusobj);
+		PrintWriter out=response.getWriter();
 		if(flag)
 		{
-			request.setAttribute("status","status updated Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet status updated Successfully');");
+			out.println("location='viewalltimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("status","status updated Successfully");
 		}
 		else
 		{
-			request.setAttribute("status","status not updated");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet status not updated');");
+			out.println("location='viewalltimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("status","status not updated");
 		}
-		request.getRequestDispatcher("updatestatus1jsp.jsp").forward(request, response);
+//		request.getRequestDispatcher("updatestatus1jsp.jsp").forward(request, response);
 		
 	}
 		

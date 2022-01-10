@@ -1,8 +1,10 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import javax.servlet.ServletException;
@@ -37,6 +39,7 @@ public class AddTaskAllUsers extends HttpServlet {
 		LocalDate assdate=LocalDate.parse(assigningdate);
 		String endingdate=request.getParameter("endingdate");
 		LocalDate enddate=LocalDate.parse(endingdate);
+		long totalhrs = ChronoUnit.DAYS.between(assdate,enddate)*8;
 		String priority=request.getParameter("priority");
 		UserDAOimpl userdao=new UserDAOimpl();
 		TaskDAOimpl taskdao=new TaskDAOimpl();
@@ -47,18 +50,27 @@ public class AddTaskAllUsers extends HttpServlet {
 		boolean flag=false;
 		for (AdminUser viewUser: userList ) {
 		id=userdao.findUserId(viewUser.getUsername());
-		Task task=new Task(id,taskname,assdate,enddate,priority,viewUser.getUsername());
+		Task task=new Task(id,taskname,assdate,enddate,priority,viewUser.getUsername(),totalhrs);
 	    flag=taskdao.insertTask(task);
 		}
+		PrintWriter out=response.getWriter();
 		if(flag)
 		{
-			request.setAttribute("task","Task Added Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Task Added Successfully');");
+			out.println("location='addtaskmain.jsp';");
+			out.println("</script>");
+//			request.setAttribute("task","Task Added Successfully");
 		}
 		else
 		{
-			request.setAttribute("task","Task Not Added");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Task Not Added');");
+			out.println("location='addtaskmain.jsp';");
+			out.println("</script>");
+//			request.setAttribute("task","Task Not Added");
 		}
-		request.getRequestDispatcher("addtaskalluser.jsp").forward(request, response);
+//		request.getRequestDispatcher("addtaskalluser.jsp").forward(request, response);
 	}
 
 		

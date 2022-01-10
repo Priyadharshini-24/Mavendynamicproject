@@ -1,6 +1,8 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,16 +38,25 @@ public class UpdateUser extends HttpServlet {
 		String password=request.getParameter("password");
 		UserDAOimpl userdao=new UserDAOimpl();
 		User user=new User(firstname,lastname,username,password);
+		PrintWriter out=response.getWriter();
 		boolean flag=userdao.updateUser(user);
 		if(flag)
 		{
-			request.setAttribute("updateuser","User Details Updated Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('User Details Updated Successfully');");
+			out.println("location='showtask.jsp';");
+			out.println("</script>");
+//			request.setAttribute("updateuser","User Details Updated Successfully");
 		}
 		else
 		{
-			request.setAttribute("updateuser","User Details not Updated ");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('User Details not Updated');");
+			out.println("location='showtask.jsp';");
+			out.println("</script>");
+//			request.setAttribute("updateuser","User Details not Updated ");
 		}
-		request.getRequestDispatcher("showuser.jsp").forward(request, response);
+//		request.getRequestDispatcher("showuser.jsp").forward(request, response);
 	}
 
 }

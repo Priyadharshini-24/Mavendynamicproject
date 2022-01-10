@@ -1,6 +1,7 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -58,15 +59,24 @@ public class Addstatus extends HttpServlet {
       int id1=timesheetdao.findTimesheetId(timesheetdate);
 		Status statusobj=new Status(id,id1,status,approvedby);
 		boolean flag=statusdao.insertStatus(statusobj);
+		PrintWriter out=response.getWriter();
 		if(flag)
 		{
-			request.setAttribute("status","status Added Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet status Added Successfully');");
+			out.println("location='viewalltimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("status","status Added Successfully");
 		}
 		else
 		{
-			request.setAttribute("status","status not Added");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet status not Added');");
+			out.println("location='viewalltimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("status","status not Added");
 		}
-		request.getRequestDispatcher("timesheetadmin.jsp").forward(request, response);
+//		request.getRequestDispatcher("timesheetadmin.jsp").forward(request, response);
 		
 	}
 

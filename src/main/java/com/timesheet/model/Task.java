@@ -8,8 +8,17 @@ public class Task {
 	private LocalDate enddate;
 	private String taskpriority;
 	private String assignedto;
+	private long totalhrs;
 	
     
+	public long getTotalhrs() {
+		return totalhrs;
+	}
+
+	public void setTotalhrs(long totalhrs) {
+		this.totalhrs = totalhrs;
+	}
+
 	public int getUserid() {
 		return userid;
 	}
@@ -60,7 +69,18 @@ public class Task {
 		super();
 	}
 	
-	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority, String assignedto) {
+//	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority,
+//			String assignedto) {
+//		super();
+//		this.userid = userid;
+//		this.task = task;
+//		this.dateassigned = dateassigned;
+//		this.enddate = enddate;
+//		this.taskpriority = taskpriority;
+//		this.assignedto = assignedto;
+//	}
+
+	public Task(int userid, String task, LocalDate dateassigned, LocalDate enddate, String taskpriority, String assignedto,long totalhrs) {
 		super();
 		this.userid = userid;
 		this.task = task;
@@ -68,30 +88,13 @@ public class Task {
 		this.enddate = enddate;
 		this.taskpriority = taskpriority;
 		this.assignedto = assignedto;
+		this.totalhrs=totalhrs;
 		
 	}
+
 	@Override
 	public String toString() {
-		return "UserId : " + userid + "\n Task Name : " + task +"\n Date assigned : " +dateassigned + "\n End date : " +enddate
-				+ "\n Task Priority : " + taskpriority + "\n Assigned to : " + assignedto;
-		}
-	@Override
-	public int hashCode() {
-		return Objects.hash(assignedto,  enddate, dateassigned, task, taskpriority, userid);
+		return "Task [userid=" + userid + ", task=" + task + ", dateassigned=" + dateassigned + ", enddate=" + enddate
+				+ ", taskpriority=" + taskpriority + ", assignedto=" + assignedto + ", totalhrs=" + totalhrs + "]";
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Task other = (Task) obj;
-		return Objects.equals(assignedto, other.assignedto) && Objects.equals(enddate, other.enddate)
-				&& Objects.equals(dateassigned, other.dateassigned)
-				&& Objects.equals(task, other.task) && Objects.equals(taskpriority, other.taskpriority)
-				&& userid == other.userid;
-	}	
-	
 	}

@@ -1,6 +1,7 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -43,29 +44,42 @@ public class Timesheetservlet extends HttpServlet {
 		String comments=request.getParameter("comments");
 		Timesheet timesheet=new Timesheet(id,id1,spendinghrs,comments,timesheetdate);
 		boolean flag1 =timesheetdao.checkDate(id, timesheetdate);
+		PrintWriter out=response.getWriter();
 		if(flag1==false)
 		{
 		
 		boolean flag=timesheetdao.insertTimesheet(timesheet);
 		if(flag)
 		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet Added Successfully');");
+			out.println("location='showtask.jsp';");
+			out.println("</script>");
 //			int taskid=taskdao.findtaskId(taskname);
 //			request.setAttribute("taskid", taskid);
-			request.setAttribute("timesheet","Timesheet Added Successfully");
-			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
+//			request.setAttribute("timesheet","Timesheet Added Successfully");
+//			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
 //			request.setAttribute("taskname",taskname);
 		}
 		else
 		{
-			request.setAttribute("timesheet","Timesheet not Added");
-			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet Not Added');");
+			out.println("location='showtask.jsp';");
+			out.println("</script>");
+//			request.setAttribute("timesheet","Timesheet not Added");
+//			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
 		}
 		
 	}
 		else
 		{
-			request.setAttribute("timesheet", "Timesheet already Exist");
-			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet already Exist');");
+			out.println("location='viewalltimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("timesheet", "Timesheet already Exist");
+//			request.getRequestDispatcher("timesheetmain.jsp").forward(request, response);
 //		 	System.out.println("not available");
 		}
 	}

@@ -1,6 +1,8 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,15 +30,24 @@ public class UpdateUserAdmin extends HttpServlet {
 		String role=request.getParameter("role");
 		AdminDAOimpl admindao=new AdminDAOimpl();
 		boolean flag=admindao.removeUser(username, role);
+		PrintWriter out=response.getWriter();
 		if(flag)
 		{
-			request.setAttribute("updateuseradmin","User Details Updated Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('User Status updated Successfully');");
+			out.println("location='showalluser.jsp';");
+			out.println("</script>");
+//			request.setAttribute("updateuseradmin","User Details Updated Successfully");
 		}
 		else
 		{
-			request.setAttribute("updateuseradmin","User Details not Updated ");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('User Status Not Updated');");
+			out.println("location='showalluser.jsp';");
+			out.println("</script>");
+//			request.setAttribute("updateuseradmin","User Details not Updated ");
 		}
-		request.getRequestDispatcher("updateUserAdmin.jsp").forward(request, response);
+//		request.getRequestDispatcher("updateUserAdmin.jsp").forward(request, response);
 	}
 
 }

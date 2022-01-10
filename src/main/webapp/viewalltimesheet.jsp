@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>All Timesheets</title>
 <style>
 *
@@ -58,14 +62,12 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
-#allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
+         table{
+          background-color:rgb(188, 210, 243);
+      }
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg)">
+<body style="background-image:url('images/Time2.jpg'); height: 100vh" class="bg-image">
  <h1 align="center">TRACK YOUR TIME</h1>
     <nav> 
         <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
@@ -80,8 +82,8 @@
    timesheetlist=viewtimesheetdao.showAllTimesheet();
 %>
 <h2><b> Timesheet Status</b></h2><br>
-<a href="timesheetadmin.jsp"><button>Add Status</button></a><br><br>
-<table border="1" id="allusers">
+<a href="timesheetadmin.jsp"><button type="button" class="btn btn-primary btn-lg">Add Status</button></a><br><br>
+<table class="table table-hover table-striped ">
 	
 	<thead>
 	<tr>
@@ -114,7 +116,7 @@ i++;
 <td> <%=viewtimesheet.getTimesheetdate()%></td>
 <td> <%=viewtimesheet.getTaskid()%></td>
 <td> <%=viewtimesheet.getStatus()%></td>
-<td><a href="updatestatus.jsp?timesheetid=<%=viewtimesheet.getTimesheetid()%>"><button>Edit</button></a></td>
+<td><a href="updatestatus.jsp?timesheetid=<%=viewtimesheet.getTimesheetid()%>"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 
 <%

@@ -1,6 +1,7 @@
 package com.timesheet.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -30,16 +31,25 @@ public class UpdateTimeSheet extends HttpServlet {
 		Timesheet timesheet=new Timesheet(userid,0,spendhrs,comments,timesheetdate);
 //		System.out.println(timesheet);
 		boolean flag=timesheetdao.updateTimesheet(timesheet);
+		PrintWriter out=response.getWriter();
 		if(flag)
 		{
-			request.setAttribute("timesheet","Timesheet updated Successfully");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet updated Successfully');");
+			out.println("location='Updatetimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("timesheet","Timesheet updated Successfully");
 		}
 		else
 		{
-			request.setAttribute("timesheet","Timesheet not updated");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Timesheet not updated');");
+			out.println("location='Updatetimesheet.jsp';");
+			out.println("</script>");
+//			request.setAttribute("timesheet","Timesheet not updated");
 		}
 		
-		request.getRequestDispatcher("updatetimesheet1.jsp").forward(request, response);
+//		request.getRequestDispatcher("updatetimesheet1.jsp").forward(request, response);
 	}
 	}
 

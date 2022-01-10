@@ -93,6 +93,7 @@
 		<th>Task Starting Date</th>
 		<th>Task Ending Date</th>
 		<th>Assigned To</th>
+		<th>Total Hrs</th>
 	</tr>
 	</thead>
 <tbody>
@@ -111,6 +112,7 @@ i++;
 <td> <%=viewtask.getDateassigned()%></td>
 <td> <%=viewtask.getEnddate()%></td>
 <td> <%=viewtask.getAssignedto()%></td>
+<td><%=viewtask.getTotalhrs() %></td>
 </tr>
 
 <%
