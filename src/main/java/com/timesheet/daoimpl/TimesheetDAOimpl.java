@@ -127,21 +127,20 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		
 		return timesheetlist;
 	}
-	public int getSpendhrs(int userid,String taskname)
+	public int getSpendhrs(LocalDate timesheetdate)
 	{
 	 Connection con=Connectionutil.getDbConnection();	
-	 String query="select total_hours from task_details where task_name=? and user_id=?";
+	 String query="select spend_time_hrs from timesheets where timesheet_for_date=?";
 	 int result=0;
 	 PreparedStatement pstmt;
 	 try {
 		pstmt=con.prepareStatement(query);
-		pstmt.setString(1,taskname);
-		pstmt.setInt(2,userid);
+		pstmt.setDate(1,java.sql.Date.valueOf(timesheetdate));
 		ResultSet rs=pstmt.executeQuery();
 		if(rs.next())
 		{
 			result= rs.getInt(1);
-			System.out.println("totalhour "+result);
+//			System.out.println("spendinghour "+result);
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();

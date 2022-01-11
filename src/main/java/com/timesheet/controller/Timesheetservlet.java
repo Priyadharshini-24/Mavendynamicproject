@@ -54,7 +54,7 @@ public class Timesheetservlet extends HttpServlet {
 			 timesheet = new Timesheet(id, id1, spendinghrs, comments, timesheetdate);
 			boolean flag1 = timesheetdao.checkDate(id, timesheetdate);
 			if (flag1 == false) {
-				result = taskdao.updatehrs(spendinghrs, id, taskname);
+				result = taskdao.updatehrs(spendinghrs, id, id1);
 				if (result > 0) {
 
 				boolean flag = timesheetdao.insertTimesheet(timesheet);

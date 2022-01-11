@@ -95,6 +95,7 @@
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery(query);
 		if(rs.next()){
+			session.setAttribute("taskId", rs.getInt(3));
 		%>
     <div class="box">
     <form action="updateTime" method="POST">

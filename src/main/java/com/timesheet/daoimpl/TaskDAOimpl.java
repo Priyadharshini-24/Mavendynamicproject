@@ -195,17 +195,17 @@ public class TaskDAOimpl implements TaskDAO
 		
 	}
 	
-	public int updatehrs(int spendhrs,int userid,String taskname)
+	public int updatehrs(int spendhrs,int userid,int taskId)
 	{
-		System.out.println("s"+spendhrs+"id "+userid+"taskname "+taskname);
+		System.out.println("s"+spendhrs+"id "+userid+"taskname "+taskId);
 		Connection con=Connectionutil.getDbConnection();
-		String query="update task_details set total_hours =total_hours-? where task_name=? and user_id=?";
+		String query="update task_details set total_hours =total_hours-? where task_id=? and user_id=?";
 		PreparedStatement pstmt;
 		int result=0;
 		try {
 			pstmt=con.prepareStatement(query);
 			pstmt.setInt(1, spendhrs);
-			pstmt.setString(2, taskname);
+			pstmt.setInt(2, taskId);
 			pstmt.setInt(3, userid);
 			result=pstmt.executeUpdate();
 			System.out.println("update"+result);

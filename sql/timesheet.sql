@@ -42,7 +42,7 @@ alter table task_details add total_working_hrs number not null;
 SELECT * FROM USER_DETAILS order by user_id;
 select * from task_details;
 commit;
---delete from task_details where task_id=66;
+--delete from task_details where task_name='Book order DB design 2';
 --delete from timesheets where timesheet_id=84;
 DESC TASK_DETAILS;
 select  floor(sysdate - to_date('2021-12-31', 'yyyy-mm-dd'))as no_of_days from dual;
@@ -123,7 +123,7 @@ inner join status s on ts.timesheet_id=s.timesheet_id where ts.timesheet_for_dat
 
 commit;
 --drop table status;
-delete from timesheets where timesheet_id=83;
+--delete from timesheets where timesheet_id=83;
 commit;
 select * from task_details;
 delete from status where status_id=5;
@@ -157,5 +157,8 @@ select sysdate from dual;
 select * from timesheets;
 select * from user_details;
 select * from task_details;
+commit;
+
+--update task_details set total_hours =total_hours- where task_name= and user_id=;
 
 select * from user_details where role not in('ADMIN','IN ACTIVE');

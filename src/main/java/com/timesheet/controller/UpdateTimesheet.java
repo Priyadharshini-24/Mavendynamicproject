@@ -10,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.timesheet.daoimpl.TaskDAOimpl;
 import com.timesheet.daoimpl.TimesheetDAOimpl;
 import com.timesheet.model.Timesheet;
 
@@ -21,16 +23,22 @@ public class UpdateTimeSheet extends HttpServlet {
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
+		HttpSession session=request.getSession();
 		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String timedate=request.getParameter("timesheetdate");
 		LocalDate timesheetdate=LocalDate.parse(timedate);
 		int userid=Integer.parseInt(request.getParameter("userid"));
 		int spendhrs=Integer.parseInt(request.getParameter("spendinghrs"));
 		String comments=request.getParameter("comments");
+		int taskId=(int)session.getAttribute("taskId");
 		TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
 		Timesheet timesheet=new Timesheet(userid,0,spendhrs,comments,timesheetdate);
 //		System.out.println(timesheet);
-		
+		int result=0,hours=0;
+		result=timesheetdao.getSpendhrs(timesheetdate);
+		hours=spendhrs-result;
+		TaskDAOimpl taskdao=new TaskDAOimpl();
+		taskdao.updatehrs(hours, userid,taskId);
 		boolean flag=timesheetdao.updateTimesheet(timesheet);
 		PrintWriter out=response.getWriter();
 		if(flag)
