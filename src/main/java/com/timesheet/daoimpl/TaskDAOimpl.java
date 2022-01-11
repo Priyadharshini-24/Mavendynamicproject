@@ -172,45 +172,52 @@ public class TaskDAOimpl implements TaskDAO
 		return flag;
 		
 	}
-	public boolean getTotalhrs(String username,String taskname)
+	public int getTotalhrs(int userid,String taskname)
 	{
 	 Connection con=Connectionutil.getDbConnection();	
-	 String query="select total_hours from task_details where task_name=? and assigned_to=?";
-	 boolean flag=true;
+	 String query="select total_hours from task_details where task_name=? and user_id=?";
+	 int result=0;
 	 PreparedStatement pstmt;
 	 try {
 		pstmt=con.prepareStatement(query);
 		pstmt.setString(1,taskname);
-		pstmt.setString(2,username);
+		pstmt.setInt(2,userid);
 		ResultSet rs=pstmt.executeQuery();
 		if(rs.next())
 		{
-		  rs.getInt(1);
-		}
-		else
-		{
-			flag=false;
+			result= rs.getInt(1);
+			System.out.println("totalhour "+result);
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-		return flag;
+		return result;
 		
 	}
 	
-	
-//	public boolean updatehrs(int totalhrs,String username,String taskname)
-//	{
-//		Connection con=Connectionutil.getDbConnection();
-//		String query="update task_details set total_hours =? where task_name=? and assigned_to=?";
-//		PreparedStatement pstmt;
-//		
-//		boolean flag=true;
-//		return flag;
-//		
-//	}
-	
-	
+	public int updatehrs(int spendhrs,int userid,String taskname)
+	{
+		System.out.println("s"+spendhrs+"id "+userid+"taskname "+taskname);
+		Connection con=Connectionutil.getDbConnection();
+		String query="update task_details set total_hours =total_hours-? where task_name=? and user_id=?";
+		PreparedStatement pstmt;
+		int result=0;
+		try {
+			pstmt=con.prepareStatement(query);
+			pstmt.setInt(1, spendhrs);
+			pstmt.setString(2, taskname);
+			pstmt.setInt(3, userid);
+			result=pstmt.executeUpdate();
+			System.out.println("update"+result);
+			pstmt.executeUpdate("commit");
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 	
 //	public boolean removeTask(String task)
 //	{

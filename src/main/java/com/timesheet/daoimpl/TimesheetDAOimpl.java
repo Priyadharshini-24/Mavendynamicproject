@@ -45,6 +45,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		}
 		return flag;
 	}
+	
 	public boolean updateTimesheet(Timesheet timesheet)
 	{
 		boolean flag=false;
@@ -125,6 +126,28 @@ public class TimesheetDAOimpl implements TimesheetDAO
 		}
 		
 		return timesheetlist;
+	}
+	public int getSpendhrs(int userid,String taskname)
+	{
+	 Connection con=Connectionutil.getDbConnection();	
+	 String query="select total_hours from task_details where task_name=? and user_id=?";
+	 int result=0;
+	 PreparedStatement pstmt;
+	 try {
+		pstmt=con.prepareStatement(query);
+		pstmt.setString(1,taskname);
+		pstmt.setInt(2,userid);
+		ResultSet rs=pstmt.executeQuery();
+		if(rs.next())
+		{
+			result= rs.getInt(1);
+			System.out.println("totalhour "+result);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+		return result;
+		
 	}
 	
 //	public boolean removeTimesheet(String timesheetfordate)

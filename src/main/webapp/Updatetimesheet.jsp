@@ -73,10 +73,11 @@
     <br><br>
      <div class="sidebar"> 
         <ul>
-        <li><a href="timesheetmain.jsp">Add Timesheet</a><br><br></li>
+        <li><a href="showtask.jsp">Add Timesheet</a><br><br></li>
         <li><a href="Updatetimesheet.jsp">Edit Timesheet</a><br><br></li>
         <li><a href="rejectedtimesheet.jsp">Rejected Timesheet</a><br><br></li>
-        <li><a href="viewtimesheet.jsp">Timesheet status</a><br><br></li>
+        <li><a href="showuserstatus1.jsp">View Timesheet Status</a><br><br></li>
+        <li><a href="viewtimesheet.jsp">View Timesheet</a><br><br></li>
         </ul>
     </div>
      <div class="box">

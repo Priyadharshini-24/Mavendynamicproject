@@ -47,11 +47,11 @@ public class Addtask extends HttpServlet {
 		
 		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String assigningdate=request.getParameter("assigningdate");
-		System.out.println(assigningdate+"helo");
+//		System.out.println(assigningdate+"helo");
 		LocalDate assdate=LocalDate.parse(assigningdate);
 		String endingdate=request.getParameter("endingdate");
 		LocalDate enddate=LocalDate.parse(endingdate);
-		System.out.println(assdate+"helo"+enddate);
+//		System.out.println(assdate+"helo"+enddate);
 		long totalhrs = ChronoUnit.DAYS.between(assdate,enddate)*8;
 		String priority=request.getParameter("priority");
 		String username=request.getParameter("username");
