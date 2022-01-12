@@ -68,6 +68,8 @@ select (to_date(assigned_to_date,'dd')-to_date(end_date,'dd'))as noofdays from t
 
 --DROP TABLE TASK_DETAILS;
 
+select * from task_details;
+select * from timesheets;
 CREATE TABLE TIMESHEETS(
 TIMESHEET_ID NUMBER GENERATED ALWAYS AS IDENTITY(START WITH 1 INCREMENT BY 1),
 USER_ID NUMBER NOT NULL,
@@ -160,5 +162,7 @@ select * from task_details;
 commit;
 
 --update task_details set total_hours =total_hours- where task_name= and user_id=;
+
+select * from task_details where assigned_to='vishaliravi@gmail.com' and total_hours>0;
 
 select * from user_details where role not in('ADMIN','IN ACTIVE');

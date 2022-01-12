@@ -65,6 +65,13 @@
          table{
           background-color:rgb(188, 210, 243);
       }
+       thead{
+        background-color:rgb(14, 32, 56);
+      }
+       th
+      { color:honeydew;
+
+      }
 </style>
 </head>
 <body style="background-image:url('images/Time2.jpg'); height: 100vh" class="bg-image">
@@ -83,7 +90,7 @@
 %>
 <h2><b> Timesheet Status</b></h2><br>
 <a href="timesheetadmin.jsp"><button type="button" class="btn btn-primary btn-lg">Add Status</button></a><br><br>
-<table class="table table-hover table-striped ">
+<table class="table table-hover table-striped">
 	
 	<thead>
 	<tr>

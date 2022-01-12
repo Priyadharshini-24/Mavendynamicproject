@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>View Task</title>
 <style>
  *
@@ -45,11 +49,16 @@
            float : right;
            margin-right: 20px;
        }
-#allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
+         table{
+          background-color:rgb(188, 210, 243);
+      }
+       thead{
+        background-color:rgb(14, 32, 56);
+      }
+       th
+      { color:honeydew;
+
+      }
 </style>
 <link rel="stylesheet" href="addtaskmain.css">
 </head>
@@ -79,8 +88,8 @@
         </ul>
     </div>
     <div class="box">
-<table border="1" id="allusers">
-	<h1><b> Tasks List</b></h1>
+<table class="table table-hover table-striped">
+	<h2><b> Tasks List</b></h2>
 	<thead>
 	<tr>
   		<th >S.no</th>
@@ -111,7 +120,7 @@ i++;
 <td> <%=viewtask.getEnddate()%></td>
 <td> <%=viewtask.getAssignedto()%></td>
 <td><%=viewtask.getTotalhrs()%></td>
-<td><a href="timesheetmain.jsp?taskName=<%=viewtask.getTask()%>&taskDate=<%=viewtask.getDateassigned() %>" ><button>ADD</button></a></td>
+<td><a href="timesheetmain.jsp?taskName=<%=viewtask.getTask()%>&taskDate=<%=viewtask.getDateassigned() %>" ><button type="button" class="btn btn-primary btn-sm">ADD</button></a></td>
 </tr>
 
 <%

@@ -58,7 +58,7 @@
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body style="background-image:url(images/Time2.jpg)">
  
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>

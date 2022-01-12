@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Users</title>
 <style>
     *
@@ -58,14 +62,21 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
-#allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
+        
+         table{
+          background-color:rgb(188, 210, 243);
+      }
+       thead{
+        background-color:rgb(14, 32, 56);
+      }
+       th
+      { color:honeydew;
+
+      }
+      
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg)">
+<body style="background-image:url(images/Time2.jpg); height: 100vh" class="bg-image">
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -83,7 +94,7 @@ List<Rejecttimesheet> rejectlist=new ArrayList<Rejecttimesheet>();
 rejectlist=rejecttimesheetdao.showRejecttimesheet(username);
 %>
 
-<table border="1" id="allusers">
+<table class="table table-hover table-striped">
 	<h2><b>Rejected Timesheets</b></h2>
 	<thead>
 	<tr>
@@ -117,7 +128,7 @@ i++;
 <td> <%=reject.getComments()%></td>
 <td> <%=reject.getApprovedby()%></td>
 <td><%=reject.getStatus()%></td>
-<td><a href="Updatetimesheet.jsp"><button>Edit</button></a></td>
+<td><a href="Updatetimesheet.jsp"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 
 <%

@@ -102,7 +102,7 @@ public class TaskDAOimpl implements TaskDAO
 	public List<Task> showTask(String username)
 	{
 		List<Task> tasklist=new ArrayList<Task>();
-		String selectquery="select * from task_details where assigned_to='"+username+"'";
+		String selectquery="select * from task_details where assigned_to='"+username+"' and total_hours>0";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;

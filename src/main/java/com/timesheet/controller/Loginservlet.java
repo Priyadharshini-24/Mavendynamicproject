@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.timesheet.daoimpl.AdminDAOimpl;
 import com.timesheet.daoimpl.UserDAOimpl;
+import com.timesheet.exception.InvalidUserException;
 import com.timesheet.model.User;
 @WebServlet("/log")
 
@@ -69,9 +70,16 @@ public class Loginservlet extends HttpServlet {
 		}
 		else
 		{
-		 session.setAttribute("login", "! Invalid Username or Password");
-		 RequestDispatcher reqdis=request.getRequestDispatcher("login.jsp");
-			reqdis.forward(request, response);
+			try
+			{
+			throw new InvalidUserException();
+			}
+			catch(InvalidUserException e)
+			{
+				session.setAttribute("login", "! Invalid Username or Password");
+				String value=e.validateUser();
+				response.sendRedirect(value);
+			}
 		}
 		
 	}

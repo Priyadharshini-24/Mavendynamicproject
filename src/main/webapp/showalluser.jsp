@@ -7,13 +7,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Users</title>
 <style>
-#allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
      *
     {
     margin:0px;
@@ -63,9 +62,19 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
+        table{
+          background-color:rgb(188, 210, 243);
+      }
+       thead{
+        background-color:rgb(14, 32, 56);
+      }
+       th
+      { color:honeydew;
+
+      }
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg)">
+<body style="background-image:url(images/Time2.jpg);height: 100vh" class="bg-image">
 <h1 class="h1" align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -77,20 +86,13 @@
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
     <br><br>
-    <%String username=(String)session.getAttribute("adminuser");
-    if(username!=null)
-    {
-    %>
-    <h3>login as :<%=username %></h3>
-    <%} %>
+   
 <% AdminDAOimpl admindao = new AdminDAOimpl();
    List<AdminUser> userList = new ArrayList<AdminUser>();
    userList = admindao.showalluser();
 %>
-
-
-<table border="1" id="allusers">
-	<h1><b>All Users List</b></h1>
+<table class="table table-hover table-striped">
+	<h2><b>All Users List</b></h2>
 	<thead>
 	<tr>
   		<th >S.no</th>
@@ -117,7 +119,7 @@ i++;
 <td><%=viewUser.getLastname()%></td>
 <td> <%=viewUser.getUsername()%></td>
 <td><%=viewUser.getRole() %></td>
-<td><a href="updateUserAdmin.jsp?username=<%=viewUser.getUsername()%>"><button>Edit</button></a></td>
+<td><a href="updateUserAdmin.jsp?username=<%=viewUser.getUsername()%>"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 
 <%

@@ -100,7 +100,7 @@ public class Timesheetservlet extends HttpServlet {
 		{
 		out.println("<script type=\"text/javascript\">");
 		out.println("alert('Timesheet Hrs Not Available');");
-		out.println("location='viewalltimesheet.jsp';");
+		out.println("location='showtask.jsp';");
 		out.println("</script>");
 			
 		}
