@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Timesheet Status Admin</title>
 <style>
 *
@@ -58,11 +62,25 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
-#allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 8px;
-        }
+        table{
+          background-color:rgb(188, 210, 243);
+      }
+       thead{
+        background-color:rgb(14, 32, 56);
+      }
+       th
+      { color:honeydew;
+
+      }
+      fieldset
+          {
+              position:absolute;
+              border-radius: 5px;
+              top: 850px;
+              left: 500px;
+              background:rgb(188, 210, 243);
+              padding: 30px;
+          }
 </style>
 </head>
 <%String adminuser=(String)session.getAttribute("adminuser"); %>
@@ -80,7 +98,7 @@
    List<ViewTimesheets> timesheetlist=new ArrayList<ViewTimesheets>();
    timesheetlist=viewtimesheetdao.showAllTimesheet();
 %>
-<table border="1" id="allusers">
+<table class="table table-hover table-striped">
 	<h2><b> Timesheet List</b></h2>
 	<thead>
 	<tr>
@@ -119,18 +137,20 @@ i++;
 %>
 </tbody>
 </table><br><br>
+<div>
+<fieldset>
 <form action="addstatus" method="post">
 <table>
   <tr>
- <th><label for="username">Enter User Name</label></th>
+ <td><label for="username">Enter User Name</label></td>
   <td><input type="email" name="username" required></td>
   </tr>
 <tr>
- <th><label for="timesheetdate">Enter Timesheet Date</label></th>
+ <td><label for="timesheetdate">Enter Timesheet Date</label></td>
   <td><input type="date" name="timesheetdate" required></td>
   </tr>
   <tr>
- <th><label for="status">Enter Status</label></th>
+ <td><label for="status">Enter Status</label></td>
   <td><select name="status" required>
        <option>Approved</option>
        <option>Rejected</option>
@@ -138,13 +158,15 @@ i++;
        </select></td>
   </tr>
   <tr>
- <th><label for="approvedby">Approved By</label></th>
+ <td><label for="approvedby">Approved By</label></td>
   <td><input type="text" name="approvedby" value="<%=adminuser%>" readonly required></td>
   </tr>
   </table>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
-   &nbsp; &nbsp; <input type="reset"value="Reset">
+  <br>
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary btn-sm" value="Submit">
+   &nbsp; &nbsp; <input type="reset" class="btn btn-secondary btn-sm" value="Clear">
 </form>
+</fieldset></div>
  <%!
 String flag;
 %>

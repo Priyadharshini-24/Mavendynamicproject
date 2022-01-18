@@ -44,7 +44,7 @@ public class UpdateUser extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('User Details Updated Successfully');");
-			out.println("location='showtask.jsp';");
+			out.println("location='showuser.jsp';");
 			out.println("</script>");
 //			request.setAttribute("updateuser","User Details Updated Successfully");
 		}
@@ -52,7 +52,7 @@ public class UpdateUser extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('User Details not Updated');");
-			out.println("location='showtask.jsp';");
+			out.println("location='showuser.jsp';");
 			out.println("</script>");
 //			request.setAttribute("updateuser","User Details not Updated ");
 		}

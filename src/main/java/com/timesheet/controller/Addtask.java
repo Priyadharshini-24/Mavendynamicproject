@@ -45,7 +45,7 @@ public class Addtask extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String taskname=request.getParameter("taskname");
 		
-		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String assigningdate=request.getParameter("assigningdate");
 //		System.out.println(assigningdate+"helo");
 		LocalDate assdate=LocalDate.parse(assigningdate);

@@ -54,7 +54,12 @@
        a:active {
          color: rgb(245, 245, 91);
         text-decoration: underline;
-        }    
+        } 
+        input
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }   
     </style>
      <link rel="stylesheet" href="addtaskmain.css">
 </head>

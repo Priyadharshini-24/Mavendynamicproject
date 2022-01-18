@@ -10,6 +10,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>View Timesheet</title>
 <style>
 *
@@ -48,22 +52,16 @@
            float : right;
            margin-right: 20px;
        }
-       a:link {
-        font-size: 20px;
-        color: rgb(250, 252, 250);
-        text-decoration: none;
-          }
-       a:hover {
-         color: rgb(158, 250, 96);
-         text-decoration: none;
-         }
-       a:active {
-         color: rgb(245, 245, 91);
-        text-decoration: underline;
-        }
-#allusers table,th,tr,td{
-        padding: 10px;
-        }
+        table{
+          background-color:rgb(188, 210, 243);
+      }
+       thead{
+        background-color:rgb(14, 32, 56);
+      }
+       th
+      { color:honeydew;
+
+      }
 </style>
 </head>
 <body style="background-image:url(images/Time2.jpg)">
@@ -86,9 +84,10 @@ List<Timesheet> timesheetlist=new ArrayList<Timesheet>();
 timesheetlist=timesheetdao.showTimesheet(userid);
 %>
 <br><br>
-<table  id="allusers">
-	<h2><b>Timesheet status</b></h2>
-	<h4>User name :<%=username%></h4>
+<h2><b>Timesheet List</b></h2>
+	<h5>User name :<%=username%></h4>
+<table class="table table-hover table-striped">
+	
 	<thead>
 	<tr>
   		<th >S.no</th>

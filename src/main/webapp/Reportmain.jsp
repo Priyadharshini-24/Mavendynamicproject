@@ -12,6 +12,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Report</title>
 <style>
  *
@@ -50,6 +54,29 @@
            float : right;
            margin-right: 20px;
        }
+       fieldset
+          {
+              position:absolute;
+              border-radius: 5px;
+              top: 180px;
+              left: 450px;
+              background:rgb(188, 210, 243);
+              padding: 30px 80px;
+          }
+          
+        h3 {
+         background:lightslategray;
+         color: rgb(248, 245, 245);
+         padding: 5px 15px;
+         }
+         
+          table{
+          background-color:rgb(188, 210, 243);
+      }
+      td
+      {
+      font-size: 20px;
+      }
 </style>
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
@@ -73,51 +100,53 @@ ReportDAOimpl reportdao=new ReportDAOimpl();
 List<Report> showReport=reportdao.findreport(timesheetdate, username);
 
 %>
-<table id="report">
-	<h2><b>Report</b></h2>
+<fieldset>
+<h3 align="center">Report</h3>
+<table class="table table-borderless">
 <tbody>
 <%
 
 for (int i=0; i<showReport.size(); i++ ) {
 
 Report view = showReport.get(i);
-System.out.println("jsp page "+view.getTimesheetid());
+//System.out.println("jsp page "+view.getTimesheetid());
 %>
 <tr>
-<td>Timesheet Date :&nbsp;&nbsp;&nbsp;<%=view.getTimesheetdate()%></td>
+<td><b>Timesheet Date</b> </td><td><%=view.getTimesheetdate()%></td>
 </tr> 
 <tr>
-<td>Timesheet Id :&nbsp;&nbsp;&nbsp;<%=view.getTimesheetid()%></td>
+<td><b>Timesheet Id</b> </td><td><%=view.getTimesheetid()%></td>
 </tr>
 <tr>
-<td>User Name :&nbsp;&nbsp;&nbsp;<%=view.getUsername()%></td>
+<td><b>User Name</b> </td><td><%=view.getUsername()%></td>
 </tr>
 <tr>
-<td>User Role :&nbsp;&nbsp;&nbsp;<%=view.getRole()%></td>
+<td><b>User Role </b></td><td><%=view.getRole()%></td>
 </tr>
 <tr>
-<td>Task Name : &nbsp;&nbsp;&nbsp;
+<td><b>Task Name</b> </td><td>
 <%=view.getTask()%></td>
 </tr>
 <tr>
-<td>User Name :&nbsp;&nbsp;&nbsp;<%=view.getUsername()%></td>
+<td><b>User Name</b> </td><td><%=view.getUsername()%></td>
 </tr>
 <tr>
-<td>Spending Hrs :&nbsp;&nbsp;&nbsp;<%=view.getSpendhrs()%></td>
+<td><b>Spending Hrs</b> </td><td><%=view.getSpendhrs()%></td>
 </tr>
 <tr>
-<td>Timesheet Status :&nbsp;&nbsp;&nbsp;<%=view.getStatus()%></td>
+<td><b>Timesheet Status</b> </td><td><%=view.getStatus()%></td>
 </tr>
 <tr>
-<td>Approved By :&nbsp;&nbsp;&nbsp;<%=view.getApprovedby()%></td>
+<td><b>Approved By</b> </td><td><%=view.getApprovedby()%></td>
 </tr>
 <tr>
-<td>Timesheet Status Updated Date :&nbsp;&nbsp;&nbsp;<%=view.getApprovedon()%></td>
+<td><b>Approved On</b> </td><td><%=view.getApprovedon()%></td>
 </tr>
 <%
 }
 %>
 </tbody>
 </table>
+</fieldset>
 </body>
 </html>

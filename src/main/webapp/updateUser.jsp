@@ -42,11 +42,25 @@
            float : right;
            margin-right: 20px;
        }
-#allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
+         fieldset
+          {
+              position:absolute;
+              border-radius: 5px;
+              top: 150px;
+              left: 500px;
+              background:rgb(169, 226, 228);
+              padding: 30px 80px;
+          }
+          input
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
+           button
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
 </style>
 <script>
     function myfunction()
@@ -77,6 +91,7 @@
    String lastname=request.getParameter("lastname");
 %>
 <form action="updateuser" method="post">
+<fieldset>
 <label for="firstname">First Name</label><br>
             <input type="text" id="First_Name" name="firstname" value="<%=firstname %>" pattern="[A-Za-z]{3,}" required autofocus><br><br>
             <label for="lastname">Last Name</label><br>
@@ -87,7 +102,8 @@
             <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Sample Xyz12@" required><br><br>
             <label for="password">Confirm Password</label><br>
             <input type="password" id="Confirm_password" name="Confirm_password" pattern="(?=.*\d)(?=.*[@#$%*!^()_+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Enter confirm password same as password " required><br><br>
-            &nbsp;&nbsp;<button type="submit" onclick="myfunction()">Submit</button>&nbsp; &nbsp;
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" onclick="myfunction()">Submit</button>&nbsp; &nbsp;<input type="reset" value="clear">
+            </fieldset>
             </form>
            
 </body>

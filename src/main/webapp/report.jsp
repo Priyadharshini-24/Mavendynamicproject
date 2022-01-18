@@ -12,11 +12,6 @@
     margin:0px;
     padding:0px;
     }
-        a
-        {
-            
-            margin-left: 30px;
-        }
         .a
         {
             
@@ -43,24 +38,41 @@
            float : right;
            margin-right: 20px;
        }
+       input
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
+          
+          div
+          {
+           width:380px;
+            height:200px;
+            position:relative;
+            margin:6% auto; 
+            background: transparent;
+            padding:5px;
+          }
 </style>
 </head>
 <body style="background-image:url(images/Time2.jpg)";>
 <h1 class="h1" align="center">TRACK YOUR TIME</h1>
     <nav>
         
-        <a href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
-        <a href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheet.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="#"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
+        <a class="a" href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
+    <br><br><br>
+    <div>
 <form action="Reportmain.jsp">
-<label>Enter Date</label>
+<label style="font-size:20px;">Enter Date</label>
 <input type="date" name="timesheetdate" required>
-<input type="submit" value="submit">
+<input type="submit" value="search">
 </form>
+</div>
 </body>
 </html>

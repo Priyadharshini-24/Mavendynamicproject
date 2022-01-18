@@ -34,7 +34,7 @@ public class AddTaskAllUsers extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 		String taskname=request.getParameter("taskname");
-		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String assigningdate=request.getParameter("assigningdate");
 		LocalDate assdate=LocalDate.parse(assigningdate);
 		String endingdate=request.getParameter("endingdate");

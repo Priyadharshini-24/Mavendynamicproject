@@ -24,13 +24,13 @@ public class UpdateTimeSheet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 		HttpSession session=request.getSession();
-		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//		DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String timedate=request.getParameter("timesheetdate");
 		LocalDate timesheetdate=LocalDate.parse(timedate);
 		int userid=Integer.parseInt(request.getParameter("userid"));
 		int spendhrs=Integer.parseInt(request.getParameter("spendinghrs"));
 		String comments=request.getParameter("comments");
-		int taskId=(int)session.getAttribute("taskId");
+		int taskId=Integer.parseInt(session.getAttribute("taskId").toString());
 		TimesheetDAOimpl timesheetdao=new TimesheetDAOimpl();
 		Timesheet timesheet=new Timesheet(userid,0,spendhrs,comments,timesheetdate);
 //		System.out.println(timesheet);

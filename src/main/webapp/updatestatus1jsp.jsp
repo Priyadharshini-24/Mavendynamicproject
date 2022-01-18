@@ -44,6 +44,11 @@
            float : right;
            margin-right: 20px;
        }
+       input
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
        /* a:link {
         font-size: 20px;
         color: rgb(250, 252, 250);

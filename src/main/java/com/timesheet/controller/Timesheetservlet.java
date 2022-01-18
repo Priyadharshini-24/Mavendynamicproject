@@ -37,7 +37,7 @@ public class Timesheetservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 		TimesheetDAOimpl timesheetdao = new TimesheetDAOimpl();
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		int id = Integer.parseInt(request.getParameter("userid"));
 		String timedate = request.getParameter("timesheetdate");
 		LocalDate timesheetdate = LocalDate.parse(timedate);
