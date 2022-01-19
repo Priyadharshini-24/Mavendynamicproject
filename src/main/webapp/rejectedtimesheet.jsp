@@ -49,20 +49,7 @@
            float : right;
            margin-right: 20px;
        }
-       a:link {
-        font-size: 20px;
-        color: rgb(250, 252, 250);
-        text-decoration: none;
-          }
-       a:hover {
-         color: rgb(158, 250, 96);
-         text-decoration: none;
-         }
-       a:active {
-         color: rgb(245, 245, 91);
-        text-decoration: underline;
-        }
-        
+    
          table{
           background-color:rgb(188, 210, 243);
       }
@@ -73,10 +60,14 @@
       { color:honeydew;
 
       }
+        body
+       {
+          background-color:rgb(107, 173, 235);
+       } 
       
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg); height: 100vh" class="bg-image">
+<body>
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         

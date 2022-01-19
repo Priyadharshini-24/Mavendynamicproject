@@ -81,10 +81,14 @@
               background:rgb(188, 210, 243);
               padding: 30px;
           }
+           body
+       {
+          background-color:rgb(107, 173, 235);
+       }
 </style>
 </head>
 <%String adminuser=(String)session.getAttribute("adminuser"); %>
-<body style="background-image:url(images/Time2.jpg)">
+<body>
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav> 
         <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>

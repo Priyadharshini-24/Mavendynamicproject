@@ -43,7 +43,7 @@ public class UpdateTask extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Task Updated Successfully');");
-			out.println("location='updatetask.jsp';");
+			out.println("location='showalltask.jsp';");
 			out.println("</script>");
 			//request.setAttribute("task","Task Updated Successfully");
 		}
@@ -51,7 +51,7 @@ public class UpdateTask extends HttpServlet {
 		{
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Task Not Updated');");
-			out.println("location='updatetask.jsp';");
+			out.println("location='showalltask.jsp';");
 			out.println("</script>");
 			//request.setAttribute("task","Task not Updated ");
 		}

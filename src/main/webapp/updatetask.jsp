@@ -55,10 +55,19 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }    */
+        input
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
+         body
+       {
+          background-color:rgb(107, 173, 235);
+       }
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -77,11 +86,12 @@
         </ul>
     </div>
     <div class="box">
+    <%String taskname=(request.getParameter("taskname")); %>
        <form method="post" action="UpdateTask1.jsp"> 
        <table>
        <tr>  
-       <th><label for="taskname">Enter Task Name</label></th>
-       <td><input type="text" name="taskname" required></td>
+       <th><label for="taskname">Task Name</label></th>
+       <td><input type="text" name="taskname" value="<%=taskname%>" required></td>
        <td><input type="submit"value="Search"></td>
     </tr>
     </table>

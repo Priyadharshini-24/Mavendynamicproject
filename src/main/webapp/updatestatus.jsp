@@ -42,6 +42,11 @@
            float : right;
            margin-right: 20px;
        }
+       input
+          {
+            padding: 4px 15px;
+            border-radius: 5px;
+          }
        /* a:link {
         font-size: 20px;
         color: rgb(250, 252, 250);
@@ -55,10 +60,14 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }    */
+         body
+       {
+          background-color:rgb(107, 173, 235);
+       }
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -81,7 +90,7 @@
         <form method="post" action="updatestatus1jsp.jsp">
             <table>
             <tr>
-       <th><label for="timesheetid">Enter Timesheet Id</label></th>
+       <th><label for="timesheetid">Timesheet Id</label></th>
        <td><input type="number" name="timesheetid" value="<%=timesheetid%>" required></td>
        <td><input type="submit"value="Search"></td>
     </tr>

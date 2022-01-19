@@ -62,10 +62,14 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }    */
+         body
+       {
+          background-color:rgb(107, 173, 235);
+       }
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         

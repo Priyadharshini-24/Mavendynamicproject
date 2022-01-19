@@ -5,6 +5,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Report</title>
 <style>
  *
@@ -37,25 +41,23 @@
        {
            float : right;
            margin-right: 20px;
-       }
-       input
-          {
-            padding: 4px 15px;
-            border-radius: 5px;
-          }
-          
-          div
+       }   
+        div
           {
            width:380px;
             height:200px;
             position:relative;
-            margin:6% auto; 
+            margin:1% auto; 
             background: transparent;
-            padding:5px;
+            padding:3px;
           }
+          body
+       {
+          background-color:rgb(107, 173, 235);
+       }
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
 <h1 class="h1" align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -69,9 +71,9 @@
     <br><br><br>
     <div>
 <form action="Reportmain.jsp">
-<label style="font-size:20px;">Enter Date</label>
+<label style="font-size:20px;"><b>Enter Date</b></label>
 <input type="date" name="timesheetdate" required>
-<input type="submit" value="search">
+<input type="submit" class="btn btn-primary btn-sm" value="search">
 </form>
 </div>
 </body>

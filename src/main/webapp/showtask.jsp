@@ -59,10 +59,14 @@
       { color:honeydew;
 
       }
+       body
+       {
+          background-color:rgb(107, 173, 235);
+       }
 </style>
 <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
 <% TaskDAOimpl taskdao = new TaskDAOimpl();
    List<Task> taskList = new ArrayList<Task>();
    String username=(String)session.getAttribute("username");

@@ -6,6 +6,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Update Task</title>
 <style>
  *
@@ -57,10 +61,14 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }    */
+         body
+       {
+          background-color:rgb(107, 173, 235);
+       }
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
 
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
@@ -95,7 +103,6 @@ if(rs.next()){
             <tr>
        <th><label for="taskname">Enter Task Name</label></th>
        <td><input type="text" name="taskname" value="<%=rs.getString(3) %>" readonly required></td>
-       <td><input type="submit"value="Search"></td>
     </tr>
            
     <tr>
@@ -116,7 +123,7 @@ if(rs.next()){
     </tr>
     </table><br><br>
    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-   <input type="submit"value="Submit">
+   <input type="submit" class="btn btn-primary btn-sm" value="Submit">
    
         <%} %>
         

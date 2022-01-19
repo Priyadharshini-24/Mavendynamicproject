@@ -73,9 +73,13 @@
       { color:honeydew;
 
       }
+       body
+       {
+          background-color:rgb(107, 173, 235);
+       }
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg);height: 100vh" class="bg-image">
+<body>
 <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
@@ -103,6 +107,7 @@
 		<th>Task Ending Date</th>
 		<th>Assigned To</th>
 		<th>Total Hrs</th>
+		<th>Edit Task</th>
 	</tr>
 	</thead>
 <tbody>
@@ -121,6 +126,7 @@ i++;
 <td><%=viewtask.getEnddate()%></td>
 <td><%=viewtask.getAssignedto()%></td>
 <td><%=viewtask.getTotalhrs() %></td>
+<td><a href="updatetask.jsp?taskname=<%=viewtask.getTask()%>"><button type="button" class="btn btn-primary btn-sm">Edit</button></a></td>
 </tr>
 
 <%

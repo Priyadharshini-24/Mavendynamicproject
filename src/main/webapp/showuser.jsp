@@ -59,9 +59,13 @@
       { color:honeydew;
 
       }
+       body
+       {
+          background-color:rgb(107, 173, 235);
+       }
 </style>
 </head>
-<body style="background-image:url(images/Time2.jpg); height: 100vh" class="bg-image">
+<body>
 <h1 class="h1" align="center">TRACK YOUR TIME</h1>
     <nav>
         

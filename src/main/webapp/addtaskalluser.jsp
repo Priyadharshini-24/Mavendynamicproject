@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Add Task to All Users</title>
 <style>
      *
@@ -55,10 +59,14 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }    */
+         body
+       {
+          background-color:rgb(107, 173, 235);
+       }
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
  
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
@@ -74,7 +82,7 @@
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
          <li><a href="showalltask.jsp">View Task</a><br><br></li>
-          <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
+          <li><a href="showalltask.jsp">Edit Task</a><br><br></li>
         </ul>
     </div>
     <div class="box">
@@ -102,8 +110,8 @@
        </td>
     </tr>
     </table><br><br>
-   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit"value="Submit">
-   &nbsp; &nbsp; <input type="reset"value="Clear">
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary btn-sm" value="Submit">
+   &nbsp; &nbsp; <input type="reset" class="btn btn-primary btn-sm" value="Clear">
     </form> 
     <%!
 String flag;

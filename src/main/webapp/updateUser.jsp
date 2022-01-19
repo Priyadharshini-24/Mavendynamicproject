@@ -61,6 +61,10 @@
             padding: 4px 15px;
             border-radius: 5px;
           }
+           body
+       {
+          background-color:rgb(107, 173, 235);
+       }
 </style>
 <script>
     function myfunction()
@@ -75,7 +79,7 @@
     }
     </script>
 </head>
-<body style="background-image:url(images/Time2.jpg)">
+<body>
 <h1 class="h1" align="center">TRACK YOUR TIME</h1>
 <nav>
         <a href="index.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>

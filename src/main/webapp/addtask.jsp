@@ -42,6 +42,10 @@
            float : right;
            margin-right: 20px;
        }
+        body
+       {
+          background-color:rgb(107, 173, 235);
+       }
        /* a:link {
         font-size: 20px;
         color: rgb(250, 252, 250);
@@ -58,7 +62,7 @@
     </style>
     <link rel="stylesheet" href="addtaskmain.css">
 </head>
-<body style="background-image:url(images/Time2.jpg)";>
+<body>
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
@@ -73,7 +77,7 @@
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>
         <li><a href="showalltask.jsp">View Task</a><br><br></li>
-        <li><a href="updatetask.jsp">Edit Task</a><br><br></li>
+        <li><a href="showalltask.jsp">Edit Task</a><br><br></li>
         </ul>
     </div>
 </body>
