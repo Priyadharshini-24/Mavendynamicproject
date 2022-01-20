@@ -17,11 +17,6 @@
     margin:0px;
     padding:0px;
     }
-        a
-        {
-            
-            margin-left: 30px;
-        }
         .a
         {
             
@@ -65,21 +60,57 @@
        {
           background-color:rgb(107, 173, 235);
        }
+       a{
+       text-decoration:none
+       }
+        .sidebar{
+       position:fixed;
+       width:300px;
+       height:100%;
+       background:#0f6a94;
+       color:white;
+       }
+       .sidebar ul a{
+    display:block;
+    height:100%;
+    width:100%;
+    line-height: 65px;
+    font-size: 20px;
+    padding-left:50px;
+    box-sizing: border-box;
+    color:white; 
+    }
+        ul{
+        list-style-type: none;
+         }
+       ul li:hover a{
+        color: #070808;
+        }
+        
+        .box{
+            width:380px;
+            height:200px;
+            position:relative;
+            margin:6% auto; 
+            background: transparent;
+            padding:5px;
+            color: #070202;
+        }
+       
     </style>
-    <link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body>
 
     <h1 align="center">TRACK YOUR TIME</h1>
     <nav>
         
-        <a href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
-        <a href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
-        <a href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
-        <a href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
-        <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
-        <a href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
-    </nav><br><br>
+        <a class="a" href="adminindex.jsp"><img class="a" src="images/Home.jpg" alt="Home"width="42px" height="42px" title="Home"></a>
+        <a class="a" href="timesheetstatus.jsp"><img src="images/timeshet.jpg" alt="Timesheet"width="42px" height="42px" title="Timesheet"></a>
+        <a class="a" href="addtask.jsp"><img src="images/addtask.jpg" alt="addtask"width="42px" height="42px" title="Add Task"></a>
+        <a class="a" href="#report.jsp"><img src="images/1report.jpg" alt="report"width="42px" height="42px" title="Report"></a>
+        <a class="a" href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
+        <a class="a" href="login.jsp"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
+    </nav>
     <div class="sidebar"> 
         <ul>
         <li><a href="addtaskmain.jsp">Add Task</a><br><br></li>

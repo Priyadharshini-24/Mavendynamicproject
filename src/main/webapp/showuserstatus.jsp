@@ -77,7 +77,7 @@
           background-color:rgb(107, 173, 235);
        }
     </style>
-    <link rel="stylesheet" href="addtaskmain.css">
+
 </head>
 <body>
 <h1 align="center">TRACK YOUR TIME</h1>

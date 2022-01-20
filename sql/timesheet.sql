@@ -41,6 +41,7 @@ alter table task_details add total_working_hrs number not null;
 
 SELECT * FROM USER_DETAILS order by user_id;
 select * from task_details;
+select * from timesheets;
 commit;
 --delete from task_details where task_name='Book order DB design 2';
 --delete from timesheets where timesheet_id=84;
@@ -52,9 +53,11 @@ select floor((end_date) - to_date(sysdate))as no_of_days from task_details where
 select total_hours from task_details where task_name='Timesheet-Ui design' and assigned_to='vishaliravi@gmail.com';
 
 select * from timesheets;
-select * from task_details;
+select * from task_details order by assigned_to_date desc;
 commit;
 update task_details set total_hours=64 where task_name='Java Training';
+update task_details set total_hours=38 where task_id=1;
+commit;
 create table demo(Ass_date date ,end_date date
 ,no_of_days number);
 insert into demo (Ass_date,end_date,no_of_days) values('31-12-21','06-01-22',(select floor((end_date) - to_date(Ass_date))as no_of_days from demo ));

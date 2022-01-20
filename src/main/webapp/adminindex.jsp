@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Home</title>
  <style>
   *
@@ -55,6 +59,9 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
+        h3{
+         margin-left: 30px;
+        }
             
     </style>
 </head>
@@ -69,12 +76,12 @@
         <a href="adminuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
+    <br>
      <%String username=(String)session.getAttribute("adminuser");
     if(username!=null)
     {
     %>
-    <h3>login as :<%=username %></h3>
+    <h3>Welcome :<%=username %></h3>
     <%} %>
     <br><br>
 </body>

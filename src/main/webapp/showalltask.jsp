@@ -63,7 +63,8 @@
          color: rgb(245, 245, 91);
         text-decoration: underline;
         }
- table{
+      table
+      {
           background-color:rgb(188, 210, 243);
       }
        thead{

@@ -63,8 +63,45 @@
        {
           background-color:rgb(107, 173, 235);
        }
+        a{
+       text-decoration:none
+       }
+        .sidebar{
+       position:fixed;
+       width:300px;
+       height:100%;
+       background:#0f6a94;
+       color:white;
+       }
+       .sidebar ul a{
+    display:block;
+    height:100%;
+    width:100%;
+    line-height: 65px;
+    font-size: 20px;
+    padding-left:50px;
+    box-sizing: border-box;
+    color:white; 
+    }
+        ul{
+        list-style-type: none;
+         }
+       ul li:hover a{
+        color: #070808;
+        }
+        
+        .box{
+            width:70%;
+            height:200px;
+            position:relative;
+            margin:6% auto; 
+            margin-right:50px;
+            background: transparent;
+            padding:4px;
+            color: #070202;
+        }
+       
 </style>
-<link rel="stylesheet" href="addtaskmain.css">
 </head>
 <body>
 <% TaskDAOimpl taskdao = new TaskDAOimpl();
@@ -81,7 +118,6 @@
         <a class="a" href="showuser.jsp"><img src="images/user1.jpg" alt="user"width="42px" height="42px" title="user"></a>
         <a href="Logout"><img class="signout" src="images/signout.png" alt="signout"width="42px" height="42px" title="Signout"></a>
     </nav>
-    <br><br>
      <div class="sidebar"> 
         <ul>
         <li><a href="showtask.jsp">Add Timesheet</a><br><br></li>

@@ -75,7 +75,7 @@ public class TaskDAOimpl implements TaskDAO
 	public List<Task> showallTask()
 	{
 		List<Task> tasklist=new ArrayList<Task>();
-		String selectquery="select * from task_details";
+		String selectquery="select * from task_details order by assigned_to_date desc";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
