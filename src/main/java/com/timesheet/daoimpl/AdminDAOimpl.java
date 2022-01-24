@@ -16,7 +16,7 @@ public class AdminDAOimpl implements AdminDAO
 {
 	public User validateAdmin(String username,String password)
 	{
-		String checkquery="select * from user_details where role='ADMIN'and user_name='"+username+"'and password='"+password+"'";
+		String checkquery="select first_name,last_name,user_name,password from user_details where role='ADMIN'and user_name='"+username+"'and password='"+password+"'";
 //		System.out.println(checkquery);
 		Connection con=Connectionutil.getDbConnection();
 		 User user=null;
@@ -25,7 +25,7 @@ public class AdminDAOimpl implements AdminDAO
 			ResultSet rs=st.executeQuery(checkquery);
 			if(rs.next())
 			{
-				user=new User(rs.getString(2),rs.getString(3), username,password);
+				user=new User(rs.getString(1),rs.getString(2), username,password);
 			}
 			
 		} catch (SQLException e) {
@@ -40,7 +40,7 @@ public class AdminDAOimpl implements AdminDAO
 	public List<AdminUser> showalluser()
 	{
 		List<AdminUser> userlist=new ArrayList<AdminUser>();
-		String selectquery="select * from user_details where role not in('ADMIN')";
+		String selectquery="select first_name,last_name,user_name,role from user_details where role not in('ADMIN')";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -51,7 +51,7 @@ public class AdminDAOimpl implements AdminDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			AdminUser user=new AdminUser(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));
+			AdminUser user=new AdminUser(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 			userlist.add(user);
 		}
 		}
@@ -67,7 +67,7 @@ public class AdminDAOimpl implements AdminDAO
 	public List<AdminUser> showusers()
 	{
 		List<AdminUser> userlist=new ArrayList<AdminUser>();
-		String selectquery="select * from user_details where role not in('ADMIN','IN ACTIVE')";
+		String selectquery="select first_name,last_name,user_name,role from user_details where role not in('ADMIN','IN ACTIVE')";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -78,7 +78,7 @@ public class AdminDAOimpl implements AdminDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			AdminUser user=new AdminUser(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6));
+			AdminUser user=new AdminUser(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 			userlist.add(user);
 		}
 		}

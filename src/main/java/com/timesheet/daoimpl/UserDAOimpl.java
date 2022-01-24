@@ -45,7 +45,7 @@ public class UserDAOimpl implements UserDAO
 	
 	public User validateUser(String username,String password)
 	{
-		String validatequery="select * from user_details where role='TEAM MEMBER'and user_name='"+username+"'and password='"+password+"'";
+		String validatequery="select first_name,last_name,user_name,password from user_details where role='TEAM MEMBER'and user_name='"+username+"'and password='"+password+"'";
 		Connection con=Connectionutil.getDbConnection();
 		User user=null;
 		try {
@@ -53,7 +53,7 @@ public class UserDAOimpl implements UserDAO
 			ResultSet rs=st.executeQuery(validatequery);
 			if(rs.next())
 			{
-				user=new User(rs.getString(2),rs.getString(3), username,password );
+				user=new User(rs.getString(1),rs.getString(2), username,password );
 			}
 			
 		} catch (SQLException e) {
@@ -97,7 +97,7 @@ public class UserDAOimpl implements UserDAO
 	public List<User> showuser(String username)
 	{
 		List<User> userlist=new ArrayList<User>();
-		String selectquery="select * from user_details where user_name='"+username+"'";
+		String selectquery="select first_name,last_name,user_name,password from user_details where user_name='"+username+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -108,7 +108,7 @@ public class UserDAOimpl implements UserDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			User user=new User(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+			User user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 			userlist.add(user);
 		}
 		}

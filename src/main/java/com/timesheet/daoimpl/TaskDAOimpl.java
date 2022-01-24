@@ -75,7 +75,7 @@ public class TaskDAOimpl implements TaskDAO
 	public List<Task> showallTask()
 	{
 		List<Task> tasklist=new ArrayList<Task>();
-		String selectquery="select * from task_details order by assigned_to_date desc";
+		String selectquery="select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details order by assigned_to_date desc";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -86,7 +86,7 @@ public class TaskDAOimpl implements TaskDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7),rs.getLong(9));
+			Task task=new Task(rs.getInt(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getDate(4).toLocalDate(),rs.getString(5),rs.getString(6),rs.getLong(7));
 			tasklist.add(task);
 		}
 		}
@@ -102,7 +102,7 @@ public class TaskDAOimpl implements TaskDAO
 	public List<Task> showTask(String username)
 	{
 		List<Task> tasklist=new ArrayList<Task>();
-		String selectquery="select * from task_details where assigned_to='"+username+"' and total_hours>0";
+		String selectquery="select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where assigned_to='"+username+"' and total_hours>0";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -113,7 +113,7 @@ public class TaskDAOimpl implements TaskDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7),rs.getLong(9));
+			Task task=new Task(rs.getInt(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getDate(4).toLocalDate(),rs.getString(5),rs.getString(6),rs.getLong(7));
 			tasklist.add(task);
 		}
 		}
@@ -148,7 +148,7 @@ public class TaskDAOimpl implements TaskDAO
 	}
 	public boolean validateTask(String taskname,String username)
 	{
-		String query="select * from task_details where Assigned_to='"+username+"' and task_name='"+taskname+"'";
+		String query="select user_id,task_name,assigned_to_date,end_date,task_priority,assigned_to,total_hours from task_details where Assigned_to='"+username+"' and task_name='"+taskname+"'";
 		Connection con=Connectionutil.getDbConnection();
 		boolean flag=true;
 		Statement st;
@@ -158,7 +158,7 @@ public class TaskDAOimpl implements TaskDAO
 			ResultSet rs=st.executeQuery(query);
 			if(rs.next())
 			{
-			Task task=new Task(rs.getInt(2),rs.getString(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getString(6),rs.getString(7),rs.getLong(9));	
+			Task task=new Task(rs.getInt(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getDate(4).toLocalDate(),rs.getString(5),rs.getString(6),rs.getLong(7));	
 			}
 			else
 			{
@@ -197,7 +197,7 @@ public class TaskDAOimpl implements TaskDAO
 	
 	public int updatehrs(int spendhrs,int userid,int taskId)
 	{
-		System.out.println("s"+spendhrs+"id "+userid+"taskname "+taskId);
+//		System.out.println("s"+spendhrs+"id "+userid+"taskname "+taskId);
 		Connection con=Connectionutil.getDbConnection();
 		String query="update task_details set total_hours =total_hours-? where task_id=? and user_id=?";
 		PreparedStatement pstmt;

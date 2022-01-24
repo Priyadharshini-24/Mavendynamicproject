@@ -66,7 +66,7 @@ public class StatusDAOimpl implements StatusDAO
 	 public List<Status> showStatus(int timesheetid)
 	 {
 		List<Status> statuslist =new ArrayList<Status>();
-		String selectquery="select * from status where timesheet_id='"+timesheetid+"'";
+		String selectquery="select user_id,timesheet_id,status,approved_by from status where timesheet_id='"+timesheetid+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -77,7 +77,7 @@ public class StatusDAOimpl implements StatusDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Status status=new Status(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5));
+			Status status=new Status(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4));
 			statuslist.add(status);
 		}
 		}
@@ -91,7 +91,7 @@ public class StatusDAOimpl implements StatusDAO
 	 public List<Status> showallStatus()
 	 {
 		List<Status> statuslist =new ArrayList<Status>();
-		String selectquery="select * from status";
+		String selectquery="select user_id,timesheet_id,status,approved_by from status";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -102,7 +102,7 @@ public class StatusDAOimpl implements StatusDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Status status=new Status(rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5));
+			Status status=new Status(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4));
 			statuslist.add(status);
 		}
 		}

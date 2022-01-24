@@ -39,6 +39,8 @@ CONSTRAINT PK_TASK_DETAILS PRIMARY KEY (TASK_ID));
 
 alter table task_details add total_working_hrs number not null; 
 
+select first_name,last_name,user_name,role from user_details where role not in('ADMIN','IN ACTIVE');
+
 SELECT * FROM USER_DETAILS order by user_id;
 select * from task_details;
 select * from timesheets;
@@ -85,6 +87,9 @@ TIMESHEET_FOR_DATE DATE NOT NULL,
 TIMESHEET_UPDATE_DATE DATE DEFAULT SYSDATE NOT NULL,
 CONSTRAINT PK_TIMESHEETS PRIMARY KEY (TIMESHEET_ID)
 );
+
+alter table timesheets add timesheet_status varchar2(15) default ('Active');
+
 select ud.user_name,ts.comments,ts.spend_time_hrs,ts.timesheet_for_date,ts.task_id,ts.timesheet_id from timesheets ts 
 inner join user_details ud on ts.user_id=ud.user_id;
 --DROP TABLE TIMESHEETS;

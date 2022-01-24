@@ -77,7 +77,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 	}
 	public boolean checkDate(int userid,LocalDate timesheetdate)
 	{
-		String query="select * from timesheets where user_id='"+userid+"' and to_char(Timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"'";
+		String query="select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id='"+userid+"' and to_char(Timesheet_for_date,'yyyy-MM-dd')='"+timesheetdate+"'";
 		Connection con=Connectionutil.getDbConnection();
 		boolean flag=true;
 		Statement st;
@@ -87,7 +87,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			ResultSet rs=st.executeQuery(query);
 			if(rs.next())
 			{
-				Timesheet timesheet=new Timesheet(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getDate(6).toLocalDate());
+				Timesheet timesheet=new Timesheet(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getDate(5).toLocalDate());
 //				System.out.println(timesheet);
 			}
 			else
@@ -104,7 +104,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 	public List<Timesheet> showTimesheet(int userid)
 	{
 		List<Timesheet> timesheetlist=new ArrayList<Timesheet>();
-		String selectquery="select * from timesheets where user_id='"+userid+"'";
+		String selectquery="select user_id,task_id,spend_time_hrs,comments,timesheet_for_date from timesheets where user_id='"+userid+"'";
 		Connectionutil conutil=new Connectionutil();
 		Connection con=conutil.getDbConnection();
 		PreparedStatement pstmt=null;
@@ -115,7 +115,7 @@ public class TimesheetDAOimpl implements TimesheetDAO
 			rs=pstmt.executeQuery();
 		while(rs.next())
 		{
-			Timesheet timesheet=new Timesheet(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getDate(6).toLocalDate());
+			Timesheet timesheet=new Timesheet(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getDate(5).toLocalDate());
 			timesheetlist.add(timesheet);
 		}
 		}
